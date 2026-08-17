@@ -1,12 +1,19 @@
-# M320 – Kompetenznachweis M1
+# M320 – Objektorientiert programmieren
 
-## Szenario 2: Online-Shop
+## Inhaltsverzeichnis
 
-Dieses Repository enthält die Lösung zum Kompetenznachweis M1 für das Szenario
-„Online-Shop“.
+| Kompetenznachweis | Thema | Dokumentation |
+|---|---|---|
+| KN-M1 | UML-Klassendiagramm – Szenario 2: Online-Shop | [KN-M1 öffnen](KN-M1/szenario-2-online-shop.md) |
+| KN-M2 | UML-Sequenzdiagramm – Tech-Support App | [KN-M2 öffnen](KN-M2/README.md) |
 
-- [Vollständige Lösung und Begründungen](KN-M1/szenario-2-online-shop.md)
+## KN-M1
+
+- [Lösung und Begründungen](KN-M1/szenario-2-online-shop.md)
 - [PlantUML-Quelldatei](KN-M1/online-shop.puml)
 
-Das Diagramm bildet die Klassen, Attribute, Beziehungen, Multiplizitäten und
-Lebenszyklen aus der Aufgabenbeschreibung ab.
+## KN-M2
+
+- [Dokumentation](KN-M2/README.md)
+- [Programmcode](KN-M2/code/)
+- [Sequenzdiagramme](KN-M2/diagramm/)
