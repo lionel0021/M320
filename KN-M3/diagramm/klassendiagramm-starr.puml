@@ -1,0 +1,39 @@
+@startuml klassendiagramm-starr
+' Vergleich: starre Loesung OHNE Interface (so besser nicht machen)
+
+title Vergleich: starre Loesung OHNE Interface
+
+skinparam classAttributeIconSize 0
+
+class Kasse {
+  + bezahlen(b : Bestellung, art : String) : boolean
+  --
+  if (art == "Kreditkarte") ...
+  else if (art == "PostFinance") ...
+  else if (art == "DebitCard") ...
+}
+
+class KreditkarteService {
+  + zahlenMitKarte(betrag : double) : boolean
+}
+
+class PostFinanceService {
+  + postfinanceZahlung(betrag : double) : boolean
+}
+
+class DebitCardService {
+  + debitZahlen(betrag : double) : boolean
+}
+
+Kasse ..> KreditkarteService : kennt direkt >
+Kasse ..> PostFinanceService : kennt direkt >
+Kasse ..> DebitCardService : kennt direkt >
+
+note bottom of Kasse
+  Problem: jede neue Zahlungsart
+  braucht ein neues "else if" in der Kasse.
+  Alle Methoden heissen anders.
+  -> schlecht wartbar, schlecht erweiterbar
+end note
+
+@enduml

@@ -1,0 +1,80 @@
+@startuml klassendiagramm
+' KN-M3 / Modul 320 - Klassendiagramm mit Interface
+' Beschreibung A: Kaffee-Bestellung mit verschiedenen Zahlungsarten
+
+title Kaffee-Bestellung - flexible Loesung mit Interface (Beschreibung A)
+
+skinparam classAttributeIconSize 0
+
+class Bestellung {
+  - positionen : List<Position>
+  + addPosition(kaffee : Kaffee, anzahl : int)
+  + auflisten() : String
+  + getTotal() : double
+  + bestaetigen() : void
+}
+
+class Position {
+  - anzahl : int
+  + getAnzahl() : int
+  + getPreis() : double
+}
+
+class Kaffee {
+  - name : String
+  - preis : double
+  + getName() : String
+  + getPreis() : double
+}
+
+class Kasse {
+  - zahlungsService : ZahlungsService
+  + setZahlungsService(s : ZahlungsService) : void
+  + bezahlen(b : Bestellung) : boolean
+}
+
+interface ZahlungsService {
+  + {abstract} bezahlen(betrag : double) : boolean
+  + {abstract} getGebuehr() : double
+  + {abstract} getName() : String
+}
+
+class KreditkarteService {
+  + bezahlen(betrag : double) : boolean
+  + getGebuehr() : double
+  + getName() : String
+}
+
+class PostFinanceService {
+  + bezahlen(betrag : double) : boolean
+  + getGebuehr() : double
+  + getName() : String
+}
+
+class DebitCardService {
+  + bezahlen(betrag : double) : boolean
+  + getGebuehr() : double
+  + getName() : String
+}
+
+' ---- HAT-Beziehungen (Raute) ----
+Bestellung "1" *-- "0..*" Position : hat >
+Position "1" o-- "1" Kaffee : hat >
+Kasse "1" o-- "1" ZahlungsService : hat >
+
+' ---- benutzt ----
+Kasse ..> Bestellung : benutzt >
+
+' ---- IST-Beziehungen (gestrichelt + hohles Dreieck = implements) ----
+ZahlungsService <|.. KreditkarteService
+ZahlungsService <|.. PostFinanceService
+ZahlungsService <|.. DebitCardService
+
+note right of ZahlungsService
+  Neue Zahlungsart (z.B. TWINT)?
+  Nur eine neue Klasse schreiben,
+  die dieses Interface implementiert.
+  Kasse wird NICHT geaendert.
+end note
+
+@enduml
