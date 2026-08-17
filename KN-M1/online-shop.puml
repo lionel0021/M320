@@ -1,0 +1,77 @@
+@startuml
+title Szenario 2 – Online-Shop
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide circle
+
+class Kunde {
+  - kundennummer: String
+  - name: String
+  - emailAdresse: String
+}
+
+class Bestellung {
+  - bestellnummer: String
+  - bestelldatum: LocalDate
+  - status: Bestellstatus
+}
+
+class Bestellposition {
+  - menge: int
+  - einzelpreis: Decimal
+}
+
+class Produkt {
+  - produktnummer: String
+  - name: String
+  - aktuellerPreis: Decimal
+  - lagerbestand: int
+}
+
+class Lieferadresse {
+  - strasse: String
+  - hausnummer: String
+  - postleitzahl: String
+  - ort: String
+  - land: String
+}
+
+class Zahlung {
+  - betrag: Decimal
+  - zahlungsdatum: LocalDate
+  - status: Zahlungsstatus
+}
+
+enum Bestellstatus {
+  OFFEN
+  BESTAETIGT
+  VERSENDET
+  ABGESCHLOSSEN
+  STORNIERT
+}
+
+enum Zahlungsstatus {
+  AUSSTEHEND
+  BEZAHLT
+  FEHLGESCHLAGEN
+  RUECKERSTATTET
+}
+
+Kunde "1" -- "0..*" Bestellung : gibt auf >
+Bestellung "1" *-- "1..*" Bestellposition : besteht aus >
+Bestellung "1" *-- "1" Lieferadresse : besitzt >
+Bestellung "1" *-- "0..1" Zahlung : besitzt >
+Bestellposition "0..*" --> "1" Produkt : verweist auf >
+
+note bottom of Bestellung
+  Eine Bestellung gehört immer
+  genau einem Kunden.
+end note
+
+note bottom of Produkt
+  Produkte existieren unabhängig
+  von Bestellungen.
+end note
+
+@enduml
