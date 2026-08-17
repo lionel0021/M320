@@ -1,0 +1,73 @@
+@startuml sequenzdiagramm
+' KN-M2 / Modul 320 - Sequenzdiagramm
+' Use Case: "Benutzer stellt eine Support-Frage" (TechSupportApp)
+' Code: https://gitlab.com/JulianKaser/javaressources/-/tree/main/code/TechSupportApp
+
+title Use Case "Benutzer stellt eine Support-Frage" - TechSupportApp
+
+skinparam responseMessageBelowArrow true
+skinparam sequenceLifeLineBorderColor #666666
+skinparam ParticipantBorderColor #333333
+
+actor "Benutzer" as user
+participant "Starter" as starter
+
+user -> starter : Programm starten (main)
+activate starter
+
+' ---- Objekte werden erzeugt (Konstruktor) ----
+create participant "supportSystem\n: SupportSystem" as sys
+starter -> sys : new SupportSystem()
+activate sys
+create participant "reader\n: InputReader" as reader
+sys -> reader : new InputReader()
+create participant "responder\n: Responder" as responder
+sys -> responder : new Responder()
+sys --> starter : supportSystem
+deactivate sys
+
+' ---- Der eigentliche Use Case ----
+starter -> sys : start()
+activate sys
+
+sys -> sys : printWelcome()
+activate sys #DDDDDD
+sys --> user : Begrüssungstext
+deactivate sys
+
+loop solange finished == false
+  sys -> reader : getInput()
+  activate reader
+  reader -> user : "> " anzeigen
+  user --> reader : Text eingeben
+  reader --> sys : input : String
+  deactivate reader
+
+  alt input beginnt mit "exit"
+    sys -> sys : finished = true
+  else normale Support-Frage
+    sys -> responder : generateResponse(input)
+    activate responder
+    responder --> sys : response : String
+    deactivate responder
+    sys --> user : response ausgeben
+  end
+end
+
+sys -> sys : printGoodbye()
+activate sys #DDDDDD
+sys --> user : Verabschiedung
+deactivate sys
+
+sys --> starter : (fertig)
+deactivate sys
+
+' ---- Objekte werden nicht mehr gebraucht ----
+destroy responder
+destroy reader
+destroy sys
+
+starter --> user : Programm beendet
+deactivate starter
+
+@enduml

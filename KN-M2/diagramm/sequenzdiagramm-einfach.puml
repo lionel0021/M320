@@ -1,0 +1,30 @@
+@startuml sequenzdiagramm-einfach
+' Vereinfachte Variante: nur EIN Durchgang der Schleife.
+' Gut zum Erklären, weil man den Weg einer einzigen Frage sieht.
+
+title Vereinfacht: eine einzige Frage ("Mein PC startet nicht")
+
+skinparam responseMessageBelowArrow true
+
+actor "Benutzer" as user
+participant "supportSystem\n: SupportSystem" as sys
+participant "reader\n: InputReader" as reader
+participant "responder\n: Responder" as responder
+
+user -> sys : start()
+activate sys
+
+sys -> reader : getInput()
+activate reader
+reader --> sys : "Mein PC startet nicht"
+deactivate reader
+
+sys -> responder : generateResponse("Mein PC startet nicht")
+activate responder
+responder --> sys : "Oh sieht nach einem PC Problem aus..."
+deactivate responder
+
+sys --> user : Antwort auf der Konsole
+deactivate sys
+
+@enduml
