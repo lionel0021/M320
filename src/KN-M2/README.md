@@ -37,7 +37,7 @@ Ich habe **Variante 2** gemacht, mit der vorgegebenen **Tech-Support App**:
 
 ## 3. Der fremde Code – zum Laufen gebracht
 
-Der Code liegt im Ordner [`code/`](code/) und besteht aus 4 Klassen:
+Der Code liegt im Ordner [`code`](code/) und besteht aus 4 Klassen:
 
 | Klasse | Aufgabe (einfach erklärt) |
 |---|---|
