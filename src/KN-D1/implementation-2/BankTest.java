@@ -1,3 +1,5 @@
+package kn.d1.impl2;
+
 public class BankTest {
     public static void main(String[] args) {
         testBankVerwaltetKontenUndTransfer();

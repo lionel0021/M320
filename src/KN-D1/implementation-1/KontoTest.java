@@ -1,3 +1,5 @@
+package kn.d1.impl1;
+
 public class KontoTest {
     public static void main(String[] args) {
         testEinzahlenUndAbheben();

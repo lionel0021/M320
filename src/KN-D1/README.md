@@ -51,9 +51,9 @@ classDiagram
 
 ```powershell
 cd src\KN-D1\implementation-1
-javac -encoding UTF-8 *.java
-java Starter
-java KontoTest
+javac -encoding UTF-8 -d out *.java
+java -cp out kn.d1.impl1.Starter
+java -cp out kn.d1.impl1.KontoTest
 ```
 
 ## 3. Implementation 2: Bank als Vermittler
@@ -86,9 +86,9 @@ classDiagram
 
 ```powershell
 cd src\KN-D1\implementation-2
-javac -encoding UTF-8 *.java
-java BankSimulation
-java BankTest
+javac -encoding UTF-8 -d out *.java
+java -cp out kn.d1.impl2.BankSimulation
+java -cp out kn.d1.impl2.BankTest
 ```
 
 Zu Beginn existieren diese Konten:

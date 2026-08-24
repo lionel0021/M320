@@ -1,3 +1,5 @@
+package kn.m2;
+
 import java.io.PrintStream;
 import java.util.Objects;
 import java.util.Scanner;

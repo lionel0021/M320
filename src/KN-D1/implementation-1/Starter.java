@@ -1,3 +1,5 @@
+package kn.d1.impl1;
+
 public class Starter {
     public static void main(String[] args) {
         Konto privatkonto = new Konto("CH-1001", "Nico", 150_000);

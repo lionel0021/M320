@@ -53,9 +53,9 @@ Produktionsklassen sowie einer Testklasse:
 
 ```bash
 cd src/KN-M2/code
-javac -encoding UTF-8 *.java
-java Starter
-java SupportSystemTest
+javac -encoding UTF-8 -d out *.java
+java -cp out kn.m2.Starter
+java -cp out kn.m2.SupportSystemTest
 ```
 
 ### Testlauf (hat funktioniert)

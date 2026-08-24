@@ -1,3 +1,5 @@
+package kn.d1.impl2;
+
 public class Kunde {
     private final int kundennummer;
     private final String name;
