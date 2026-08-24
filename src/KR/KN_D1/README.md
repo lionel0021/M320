@@ -26,9 +26,6 @@ Die einfache Variante besitzt zwei Klassen:
 - `Konto` kapselt Kontonummer, Inhaber und Saldo.
 - `Starter` erzeugt zwei Konten und stellt ein Konsolenmenü bereit, über das
   der Benutzer selbst einzahlt, abhebt und überweist (Eingabe über die Tastatur).
-- `Beispiel2` zeigt dasselbe Prinzip ohne Eingabe an einem Lohn-Szenario: ein
-  Arbeitgeber-Konto überweist Lohn an zwei Mitarbeiter-Konten, danach spart eines
-  einen Teil auf ein Sparkonto.
 
 Beim Aufruf `privatkonto.ueberweisenAn(sparkonto, 30_000)` erhält das
 Quellkonto ein anderes `Konto`-Objekt und einen Betrag. Das Quellkonto ruft
@@ -56,11 +53,52 @@ classDiagram
 cd src\KR\KN_D1\implementation_1
 javac -encoding UTF-8 -d out *.java
 java -cp out KR.KN_D1.implementation_1.Starter
-java -cp out KR.KN_D1.implementation_1.Beispiel2
 java -cp out KR.KN_D1.implementation_1.KontoTest
 ```
 
-## 3. Implementation 2: Bank als Vermittler
+## 3. Zweites Beispiel: Garagen-Simulation
+
+Ein zweites, eigenständiges Beispiel im Ordner `garage/`. Es zeigt dieselben
+KN-D1-Prinzipien (Objektkommunikation und Datenkapselung) an einem anderen
+Thema: einer Autogarage.
+
+- `Fahrzeug` kapselt Kennzeichen, Reparaturkosten und den Reparatur-Status.
+  Der Status kann nur über `markiereRepariert()` gesetzt werden.
+- `Garage` verwaltet die registrierten Fahrzeuge. Sie erzeugt die
+  `Fahrzeug`-Objekte und delegiert das Reparieren an das jeweilige Fahrzeug.
+- `GarageStarter` ist die interaktive Simulation: der Benutzer registriert
+  Fahrzeuge zur Reparatur (mit Kosten), markiert sie als repariert und fragt ab,
+  welche Fahrzeuge schon repariert sind und wie hoch die Kosten sind.
+- `GarageTest` prüft Registrieren, Reparatur-Status und Gesamtkosten.
+
+```mermaid
+classDiagram
+    class Fahrzeug {
+        -String kennzeichen
+        -long kostenInRappen
+        -boolean repariert
+        +markiereRepariert()
+    }
+    class Garage {
+        +registriere(String kennzeichen, long kostenInRappen) Fahrzeug
+        +markiereRepariert(String kennzeichen) boolean
+        +reparierteFahrzeuge() List
+        +gesamtkostenInRappen() long
+    }
+    Garage "1" o-- "0..*" Fahrzeug : verwaltet
+    Garage ..> Fahrzeug : erzeugt und delegiert
+```
+
+### Ausführen
+
+```powershell
+cd src\KR\KN_D1\garage
+javac -encoding UTF-8 -d out *.java
+java -cp out KR.KN_D1.garage.GarageStarter
+java -cp out KR.KN_D1.garage.GarageTest
+```
+
+## 4. Implementation 2: Bank als Vermittler
 
 Die erweiterte Variante trennt die Verantwortlichkeiten:
 
@@ -102,7 +140,7 @@ Zu Beginn existieren diese Konten:
 | `CH-2001` | Nico | CHF 1'500.00 |
 | `CH-2002` | Lea | CHF 800.00 |
 
-## 4. Fragen zur Besprechung
+## 5. Fragen zur Besprechung
 
 ### Wie wird die Datenkapselung umgesetzt?
 
@@ -151,7 +189,7 @@ Komplexe Datentypen sind Objekte mit Attributen und Methoden. Beispiele sind
 `LocalDateTime`. Eine Variable eines komplexen Typs enthält eine Referenz auf
 das Objekt.
 
-## 5. Wesentliche Sicherheitsregeln
+## 6. Wesentliche Sicherheitsregeln
 
 - Beträge müssen grösser als null sein.
 - Ein Konto darf nicht überzogen werden.
@@ -162,7 +200,7 @@ das Objekt.
 - Ungültige Benutzereingaben und Zahlenüberläufe werden abgefangen; eine
   fehlgeschlagene Operation verändert keinen Saldo.
 
-## 6. Dateien
+## 7. Dateien
 
 ```text
 KN_D1/
@@ -171,16 +209,21 @@ KN_D1/
 │   ├── Konto.java
 │   ├── KontoTest.java
 │   └── Starter.java
-└── implementation_2/
-    ├── Bank.java
-    ├── Bankkonto.java
-    ├── BankSimulation.java
-    ├── BankTest.java
-    ├── Kunde.java
-    └── Ueberweisung.java
+├── implementation_2/
+│   ├── Bank.java
+│   ├── Bankkonto.java
+│   ├── BankSimulation.java
+│   ├── BankTest.java
+│   ├── Kunde.java
+│   └── Ueberweisung.java
+└── garage/
+    ├── Fahrzeug.java
+    ├── Garage.java
+    ├── GarageStarter.java
+    └── GarageTest.java
 ```
 
-## 7. Lernziele-Check
+## 8. Lernziele-Check
 
 - [x] Eigene Klassen entworfen und Objekte instanziiert
 - [x] Methodenaufrufe zwischen Objekten gezeigt
