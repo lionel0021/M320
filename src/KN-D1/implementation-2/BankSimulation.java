@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class BankSimulation {
@@ -7,8 +8,8 @@ public class BankSimulation {
     private final Scanner scanner;
 
     public BankSimulation(Bank bank, Scanner scanner) {
-        this.bank = bank;
-        this.scanner = scanner;
+        this.bank = Objects.requireNonNull(bank, "Die Bank darf nicht null sein.");
+        this.scanner = Objects.requireNonNull(scanner, "Der Scanner darf nicht null sein.");
     }
 
     public static void main(String[] args) {
@@ -27,6 +28,9 @@ public class BankSimulation {
 
         while (laeuft) {
             menueAnzeigen();
+            if (!scanner.hasNextLine()) {
+                break;
+            }
             String auswahl = scanner.nextLine().trim();
             try {
                 switch (auswahl) {
@@ -38,7 +42,7 @@ public class BankSimulation {
                     case "0" -> laeuft = false;
                     default -> System.out.println("Ungültige Auswahl.");
                 }
-            } catch (IllegalArgumentException | IllegalStateException exception) {
+            } catch (IllegalArgumentException | IllegalStateException | ArithmeticException exception) {
                 System.out.println("Fehler: " + exception.getMessage());
             }
         }
@@ -92,9 +96,13 @@ public class BankSimulation {
 
     private long betragLesen() {
         System.out.print("Betrag in CHF: ");
-        String eingabe = scanner.nextLine().trim().replace(',', '.');
+        return betragInRappenUmwandeln(scanner.nextLine());
+    }
+
+    static long betragInRappenUmwandeln(String eingabe) {
+        Objects.requireNonNull(eingabe, "Die Eingabe darf nicht null sein.");
         try {
-            return new BigDecimal(eingabe)
+            return new BigDecimal(eingabe.trim().replace(',', '.'))
                     .movePointRight(2)
                     .setScale(0, RoundingMode.UNNECESSARY)
                     .longValueExact();

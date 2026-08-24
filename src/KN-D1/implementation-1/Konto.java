@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -56,12 +57,20 @@ public class Konto {
             throw new IllegalArgumentException("Quell- und Zielkonto müssen verschieden sein.");
         }
 
-        abheben(betragInRappen);
-        zielkonto.einzahlen(betragInRappen);
+        pruefePositivenBetrag(betragInRappen);
+        if (betragInRappen > saldoInRappen) {
+            throw new IllegalStateException("Der Kontostand reicht nicht aus.");
+        }
+
+        // Beide neuen Salden werden vor der ersten Zustandsänderung geprüft.
+        // Dadurch bleibt die Überweisung auch bei einem Zahlenüberlauf atomar.
+        long neuerZielsaldo = Math.addExact(zielkonto.saldoInRappen, betragInRappen);
+        saldoInRappen -= betragInRappen;
+        zielkonto.saldoInRappen = neuerZielsaldo;
     }
 
     public String saldoFormatiert() {
-        return String.format("CHF %.2f", saldoInRappen / 100.0);
+        return "CHF " + BigDecimal.valueOf(saldoInRappen, 2).toPlainString();
     }
 
     private static void pruefePositivenBetrag(long betragInRappen) {

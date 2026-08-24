@@ -6,6 +6,7 @@
 |---|---|---|
 | KN-M1 | UML-Klassendiagramm – Szenario 2: Online-Shop | [KN-M1 öffnen](src/KN-M1/szenario-2-online-shop.md) |
 | KN-M2 | UML-Sequenzdiagramm – Tech-Support App | [KN-M2 öffnen](src/KN-M2/README.md) |
+| KN-M3 | UML-Klassendiagramm – Interfaces | [KN-M3 öffnen](src/KN-M3/README.md) |
 | KN-D1 | Datenkapselung und Objektkommunikation – Banksimulation | [KN-D1 öffnen](src/KN-D1/README.md) |
 
 ## KN-M1
@@ -18,6 +19,11 @@
 - [Dokumentation](src/KN-M2/README.md)
 - [Programmcode](src/KN-M2/code/)
 - [Sequenzdiagramme](src/KN-M2/diagramm/)
+
+## KN-M3
+
+- [Dokumentation](src/KN-M3/README.md)
+- [Klassendiagramme](src/KN-M3/diagramm/)
 
 ## KN-D1
 

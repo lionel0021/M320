@@ -1,47 +1,61 @@
+import java.util.Locale;
+import java.util.Objects;
 
-public class Responder
-{
+public class Responder {
+    private static final String STANDARD_ANTWORT =
+            "Dazu habe ich leider noch keine passende Lösung.";
 
-    public String generateResponse(String input)
-    {
-        if(input.contains ("PC") ){
-            return "Oh sieht nach einem PC Problem aus...";
+    public String generateResponse(String input) {
+        String normalisierteEingabe = Objects.requireNonNull(
+                input, "Die Eingabe darf nicht null sein.")
+                .strip()
+                .toLowerCase(Locale.ROOT);
+
+        if (normalisierteEingabe.isEmpty()) {
+            return "Sie müssen mir schon eine Frage stellen, damit ich Ihnen helfen kann.";
         }
 
-        if(input.contains ("Hilfe") ){
-            return "Haben sie versucht den PC aus und wieder an zu schalten?";
+        if (enthaeltEines(normalisierteEingabe, "pc", "computer")) {
+            return "Das sieht nach einem PC-Problem aus.";
         }
 
-        if(input.contains ("Drucker") ){
-            return "Haben sie dem Drucker alles gegeben was er braucht?";
+        if (normalisierteEingabe.contains("hilfe")) {
+            return "Haben Sie versucht, den PC aus- und wieder einzuschalten?";
         }
 
-        if(input.contains ("") ){
-            return "Sie müssen mir schon eine Frage stellen das ich ihnen helfen kann :(";
+        if (normalisierteEingabe.contains("drucker")) {
+            return "Ist der Drucker eingeschaltet, verbunden und mit Papier versorgt?";
         }
 
-        if(input.contains ("bug") ){
-            return "Haben sie versucht das Prpogramm neu zu installieren?";
+        if (normalisierteEingabe.contains("bug")) {
+            return "Haben Sie versucht, das Programm neu zu installieren?";
         }
 
-        if(input.contains ("dankeschön") ){
-            return "Kein Problem, ich helfe gerne :)";
+        if (enthaeltEines(normalisierteEingabe, "dankeschön", "danke")) {
+            return "Kein Problem, ich helfe gerne.";
         }
 
-        if(input.contains ("anrufen") ){
-            return "Tut mir leid wir sind nicht per Telefon erreichbar";
+        if (enthaeltEines(normalisierteEingabe, "anrufen", "telefon")) {
+            return "Tut mir leid, wir sind nicht per Telefon erreichbar.";
         }
 
-        if(input.contains ("internet") ){
-            return "Haben sie schon versucht ihren Router neu zu starten?";
+        if (enthaeltEines(normalisierteEingabe, "internet", "router")) {
+            return "Haben Sie schon versucht, Ihren Router neu zu starten?";
         }
 
-        if(input.contains ("Bildschirm") ){
-            return "Vielleicht haben sie ihn nicht eingesteckt.";
+        if (enthaeltEines(normalisierteEingabe, "bildschirm", "monitor")) {
+            return "Prüfen Sie bitte, ob der Bildschirm eingesteckt und eingeschaltet ist.";
         }
 
-        else
-            return "Das Problem ist nicht lösbar schmeissen sie den PC weg";
+        return STANDARD_ANTWORT;
+    }
 
+    private static boolean enthaeltEines(String text, String... suchbegriffe) {
+        for (String suchbegriff : suchbegriffe) {
+            if (text.contains(suchbegriff)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

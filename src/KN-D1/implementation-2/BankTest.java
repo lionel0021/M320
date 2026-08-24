@@ -3,6 +3,9 @@ public class BankTest {
         testBankVerwaltetKontenUndTransfer();
         testUnbekanntesKontoWirdAbgelehnt();
         testKontolisteIstNichtVeraenderbar();
+        testUeberweisungIstAtomar();
+        testUeberweisungsverlaufIstMomentaufnahme();
+        testBetragWirdExaktUmgewandelt();
         System.out.println("Implementation 2: Alle Tests erfolgreich.");
     }
 
@@ -39,6 +42,54 @@ public class BankTest {
             fehlerErhalten = true;
         }
         pruefe(fehlerErhalten, "Die Kontoliste darf von aussen nicht veränderbar sein");
+    }
+
+    private static void testUeberweisungIstAtomar() {
+        Bank bank = new Bank("Testbank");
+        Bankkonto quelle = bank.kontoEroeffnen("A", new Kunde(1, "Anna"));
+        Bankkonto ziel = bank.kontoEroeffnen("B", new Kunde(2, "Ben"));
+        bank.einzahlen("A", 1_000);
+        bank.einzahlen("B", Long.MAX_VALUE);
+
+        erwarteException(ArithmeticException.class, () -> bank.ueberweisen("A", "B", 1));
+
+        pruefe(quelle.getSaldoInRappen() == 1_000, "Quellsaldo darf sich nicht verändern");
+        pruefe(ziel.getSaldoInRappen() == Long.MAX_VALUE, "Zielsaldo darf sich nicht verändern");
+        pruefe(bank.getUeberweisungen().isEmpty(), "Fehlgeschlagener Transfer darf nicht protokolliert werden");
+    }
+
+    private static void testUeberweisungsverlaufIstMomentaufnahme() {
+        Bank bank = new Bank("Testbank");
+        bank.kontoEroeffnen("A", new Kunde(1, "Anna"));
+        bank.kontoEroeffnen("B", new Kunde(2, "Ben"));
+        bank.einzahlen("A", 1_000);
+
+        var vorherigerVerlauf = bank.getUeberweisungen();
+        bank.ueberweisen("A", "B", 100);
+
+        pruefe(vorherigerVerlauf.isEmpty(), "Eine zurückgegebene Liste darf sich nachträglich nicht ändern");
+        pruefe(bank.getUeberweisungen().size() == 1, "Aktueller Verlauf ist falsch");
+    }
+
+    private static void testBetragWirdExaktUmgewandelt() {
+        pruefe(BankSimulation.betragInRappenUmwandeln("12.34") == 1_234,
+                "Punkt als Dezimaltrennzeichen wurde falsch umgewandelt");
+        pruefe(BankSimulation.betragInRappenUmwandeln("12,34") == 1_234,
+                "Komma als Dezimaltrennzeichen wurde falsch umgewandelt");
+        erwarteException(IllegalArgumentException.class,
+                () -> BankSimulation.betragInRappenUmwandeln("12.345"));
+    }
+
+    private static void erwarteException(Class<? extends Throwable> typ, Runnable aktion) {
+        try {
+            aktion.run();
+        } catch (Throwable exception) {
+            if (typ.isInstance(exception)) {
+                return;
+            }
+            throw new AssertionError("Falscher Exception-Typ", exception);
+        }
+        throw new AssertionError("Erwartete Exception wurde nicht ausgelöst: " + typ.getSimpleName());
     }
 
     private static void pruefe(boolean bedingung, String meldung) {

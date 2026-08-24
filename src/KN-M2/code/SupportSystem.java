@@ -1,47 +1,50 @@
-public class SupportSystem
-{
-    private InputReader reader;
-    private Responder responder;
+import java.io.PrintStream;
+import java.util.Locale;
+import java.util.Objects;
 
+public class SupportSystem {
+    private final InputReader reader;
+    private final Responder responder;
+    private final PrintStream output;
 
-    public SupportSystem()
-    {
-        reader = new InputReader();
-        responder = new Responder();
+    public SupportSystem() {
+        this(new InputReader(), new Responder(), System.out);
     }
 
+    public SupportSystem(InputReader reader, Responder responder, PrintStream output) {
+        this.reader = Objects.requireNonNull(reader, "Der InputReader darf nicht null sein.");
+        this.responder = Objects.requireNonNull(responder, "Der Responder darf nicht null sein.");
+        this.output = Objects.requireNonNull(output, "Die Ausgabe darf nicht null sein.");
+    }
 
-    public void start()
-    {
+    public void start() {
         boolean finished = false;
-
         printWelcome();
 
-        while(!finished) {
+        while (!finished) {
             String input = reader.getInput();
-
-            if(input.startsWith("exit")) {
+            if (istBeendenBefehl(input)) {
                 finished = true;
-            }
-            else {
-                String response = responder.generateResponse(input);
-                System.out.println(response);
+            } else {
+                output.println(responder.generateResponse(input));
             }
         }
         printGoodbye();
     }
 
-    public void printWelcome()
-    {
-        System.out.println("Willkommen zum IT Support");
-        System.out.println();
-        System.out.println("Bitte lassen sie uns wissen was ihr Problem ist");
-        System.out.println("Wir werden ihnen versuchen so gut wie es geht zu helfen");
-        System.out.println("Bitte schreiben sie 'exit' um den IT SUpport zu beenden");
+    public void printWelcome() {
+        output.println("Willkommen beim IT-Support");
+        output.println();
+        output.println("Bitte lassen Sie uns wissen, was Ihr Problem ist.");
+        output.println("Wir werden versuchen, Ihnen so gut wie möglich zu helfen.");
+        output.println("Schreiben Sie 'exit', um den IT-Support zu beenden.");
     }
 
-    public void printGoodbye()
-    {
-        System.out.println("Ich hoffe ich konnte helfen :) Tschüss...");
+    public void printGoodbye() {
+        output.println("Ich hoffe, ich konnte helfen. Tschüss!");
+    }
+
+    private static boolean istBeendenBefehl(String input) {
+        return input.stripLeading().toLowerCase(Locale.ROOT).startsWith("exit");
     }
 }

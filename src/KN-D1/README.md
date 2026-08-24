@@ -50,7 +50,7 @@ classDiagram
 ### Ausführen
 
 ```powershell
-cd KN-D1\implementation-1
+cd src\KN-D1\implementation-1
 javac -encoding UTF-8 *.java
 java Starter
 java KontoTest
@@ -62,7 +62,7 @@ Die erweiterte Variante trennt die Verantwortlichkeiten:
 
 - `Kunde` speichert Kundennummer und Name.
 - `Bankkonto` verwaltet einen gekapselten Saldo und gehört einem Kunden.
-- `Bank` verwaltet mehrere Konten und vermittelt Überweisungen.
+- `Bank` verwaltet mehrere Konten und stösst atomare Überweisungen an.
 - `Ueberweisung` speichert einen unveränderlichen Eintrag im Verlauf.
 - `BankSimulation` stellt ein interaktives Konsolenmenü bereit.
 
@@ -85,7 +85,7 @@ classDiagram
 ### Ausführen
 
 ```powershell
-cd KN-D1\implementation-2
+cd src\KN-D1\implementation-2
 javac -encoding UTF-8 *.java
 java BankSimulation
 java BankTest
@@ -123,8 +123,10 @@ Dabei werden das komplexe Objekt `zielkonto` und der primitive Wert
 `betragInRappen` an die Methode `ueberweisenAn` übergeben.
 
 In Implementation 2 kommuniziert `BankSimulation` mit `Bank`. Die Bank sucht
-die beiden `Bankkonto`-Objekte und ruft deren Methoden `belasten` und
-`gutschreiben` auf.
+die beiden `Bankkonto`-Objekte und stösst über `ueberweisenAn(...)` die
+Überweisung an. Das Quellkonto prüft beide neuen Salden, bevor es eines der
+Objekte verändert. Dadurch bleibt der Vorgang auch bei einem Zahlenüberlauf
+atomar.
 
 ### Wie verändert sich der Zustand eines Objekts?
 
@@ -153,8 +155,8 @@ das Objekt.
 - Kontonummern müssen innerhalb einer Bank eindeutig sein.
 - Geld wird intern als ganze Rappen (`long`) gespeichert; dadurch entstehen
   keine Rundungsfehler durch `double`.
-- Ungültige Benutzereingaben werden abgefangen und als verständliche Meldung
-  ausgegeben.
+- Ungültige Benutzereingaben und Zahlenüberläufe werden abgefangen; eine
+  fehlgeschlagene Operation verändert keinen Saldo.
 
 ## 6. Dateien
 

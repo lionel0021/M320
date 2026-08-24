@@ -3,6 +3,7 @@ public class KontoTest {
         testEinzahlenUndAbheben();
         testUeberweisungVeraendertBeideKonten();
         testUeberziehungWirdVerhindert();
+        testUeberweisungBleibtBeiUeberlaufUnveraendert();
         System.out.println("Implementation 1: Alle Tests erfolgreich.");
     }
 
@@ -31,6 +32,28 @@ public class KontoTest {
         }
         pruefe(fehlerErhalten, "Eine Überziehung muss abgelehnt werden");
         pruefe(konto.getSaldoInRappen() == 1_000, "Saldo darf sich nicht verändern");
+    }
+
+    private static void testUeberweisungBleibtBeiUeberlaufUnveraendert() {
+        Konto quelle = new Konto("CH-TEST-5", "Quelle", 1_000);
+        Konto ziel = new Konto("CH-TEST-6", "Ziel", Long.MAX_VALUE);
+
+        erwarteException(ArithmeticException.class, () -> quelle.ueberweisenAn(ziel, 1));
+
+        pruefe(quelle.getSaldoInRappen() == 1_000, "Quellsaldo darf sich nicht verändern");
+        pruefe(ziel.getSaldoInRappen() == Long.MAX_VALUE, "Zielsaldo darf sich nicht verändern");
+    }
+
+    private static void erwarteException(Class<? extends Throwable> typ, Runnable aktion) {
+        try {
+            aktion.run();
+        } catch (Throwable exception) {
+            if (typ.isInstance(exception)) {
+                return;
+            }
+            throw new AssertionError("Falscher Exception-Typ", exception);
+        }
+        throw new AssertionError("Erwartete Exception wurde nicht ausgelöst: " + typ.getSimpleName());
     }
 
     private static void pruefe(boolean bedingung, String meldung) {

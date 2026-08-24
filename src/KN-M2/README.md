@@ -28,16 +28,18 @@ Ich habe **Variante 2** gemacht, mit der vorgegebenen **Tech-Support App**:
 
 ## 2. Was habe ich gemacht? (Kurzfassung)
 
-1. Fremden Code heruntergeladen und **zum Laufen gebracht** (kompiliert + getestet, siehe Kapitel 3).
+1. Fremden Ausgangscode heruntergeladen, **zum Laufen gebracht und refaktoriert**
+   (kompiliert + getestet, siehe Kapitel 3).
 2. Den Code gelesen und einen **Use Case** ausgewählt: *"Benutzer stellt eine Support-Frage"*.
 3. Diesen Use Case als **Sequenzdiagramm in PlantUML** gezeichnet (Kapitel 5).
 4. Alles erklärt: Symbole, statisch vs. dynamisch, und die Fragen zur Besprechung beantwortet (Kapitel 7–9).
 
 ---
 
-## 3. Der fremde Code – zum Laufen gebracht
+## 3. Der Ausgangscode – refaktoriert und getestet
 
-Der Code liegt im Ordner [`code`](code/) und besteht aus 4 Klassen:
+Der Code liegt im Ordner [`code`](code/) und besteht aus vier
+Produktionsklassen sowie einer Testklasse:
 
 | Klasse | Aufgabe (einfach erklärt) |
 |---|---|
@@ -45,13 +47,15 @@ Der Code liegt im Ordner [`code`](code/) und besteht aus 4 Klassen:
 | `SupportSystem` | Der **Chef**. Steuert den Ablauf: begrüssen → Frage lesen → Antwort holen → ausgeben → wiederholen → verabschieden. |
 | `InputReader` | Liest die Eingabe des Benutzers von der Tastatur (`Scanner`). |
 | `Responder` | Sucht im Text nach Stichwörtern (z. B. "PC", "Drucker") und gibt die passende Antwort zurück. |
+| `SupportSystemTest` | Prüft Stichworterkennung, leere Eingaben und einen vollständigen Dialog. |
 
 ### So wird es gestartet
 
 ```bash
-cd code
+cd src/KN-M2/code
 javac -encoding UTF-8 *.java
 java Starter
+java SupportSystemTest
 ```
 
 ### Testlauf (hat funktioniert)
@@ -59,27 +63,25 @@ java Starter
 Eingaben: `Mein PC startet nicht`, `Drucker kaputt`, `exit`
 
 ```text
-Willkommen zum IT Support
+Willkommen beim IT-Support
 
-Bitte lassen sie uns wissen was ihr Problem ist
-Wir werden ihnen versuchen so gut wie es geht zu helfen
-Bitte schreiben sie 'exit' um den IT SUpport zu beenden
+Bitte lassen Sie uns wissen, was Ihr Problem ist.
+Wir werden versuchen, Ihnen so gut wie möglich zu helfen.
+Schreiben Sie 'exit', um den IT-Support zu beenden.
 > Mein PC startet nicht
-Oh sieht nach einem PC Problem aus...
+Das sieht nach einem PC-Problem aus.
 > Drucker kaputt
-Haben sie dem Drucker alles gegeben was er braucht?
+Ist der Drucker eingeschaltet, verbunden und mit Papier versorgt?
 > exit
-Ich hoffe ich konnte helfen :) Tschüss...
+Ich hoffe, ich konnte helfen. Tschüss!
 ```
 
-Getestet mit Java 25. Der Code wurde **nicht verändert** (es ist fremder Code), damit das Diagramm
-genau zu diesem Code passt.
-
-> **Beobachtung (kleiner Fehler im fremden Code):**
-> In `Responder.generateResponse()` steht `if (input.contains(""))`. Ein leerer Text ist in *jedem*
-> String enthalten, darum ist diese Bedingung **immer wahr**. Alle Stichwörter darunter
-> ("bug", "internet", "Bildschirm", …) werden deshalb **nie** erreicht.
-> Für das Sequenzdiagramm ändert das nichts: `generateResponse()` gibt immer *einen* String zurück.
+Getestet mit Java 25. Die ursprüngliche Objektstruktur und die im Diagramm
+gezeigten Methodenaufrufe sind erhalten geblieben. Beim Refactoring wurden
+Abhängigkeiten unveränderbar und von aussen injizierbar gemacht, die
+Stichwortsuche unabhängig von Gross-/Kleinschreibung umgesetzt und die immer
+wahre Bedingung `input.contains("")` korrigiert. Dadurch sind nun alle
+Antwortregeln erreichbar.
 
 ---
 
@@ -234,11 +236,12 @@ Verwandte Rahmen: `loop` (Wiederholung), `opt` (optional, nur wenn Bedingung sti
 ```text
 KN-M2/
 ├── README.md                            <- diese Dokumentation
-├── code/                                <- fremder Code (TechSupportApp), unverändert
+├── code/                                <- refaktorierte TechSupportApp
 │   ├── Starter.java
 │   ├── SupportSystem.java
 │   ├── InputReader.java
-│   └── Responder.java
+│   ├── Responder.java
+│   └── SupportSystemTest.java
 └── diagramm/
     ├── sequenzdiagramm.puml             <- PlantUML-Quelle (komplett)
     ├── sequenzdiagramm.png
