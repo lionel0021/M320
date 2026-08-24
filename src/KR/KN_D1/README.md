@@ -1,8 +1,8 @@
-# KN-D1 – Banksimulation
+# KR.KN-D1 – Banksimulation
 
 | | |
 |---|---|
-| **Kompetenznachweis** | KN-D1 – Objektkommunikation und Datenkapselung |
+| **Kompetenznachweis** | KR.KN-D1 – Objektkommunikation und Datenkapselung |
 | **Szenario** | Banksimulation |
 | **Sprache** | Java |
 | **Datum** | 17.08.2026 |
@@ -50,10 +50,10 @@ classDiagram
 ### Ausführen
 
 ```powershell
-cd src\KN-D1\implementation-1
+cd src\KR\KN_D1\implementation_1
 javac -encoding UTF-8 -d out *.java
-java -cp out kn.d1.impl1.Starter
-java -cp out kn.d1.impl1.KontoTest
+java -cp out KR.KN_D1.implementation_1.Starter
+java -cp out KR.KN_D1.implementation_1.KontoTest
 ```
 
 ## 3. Implementation 2: Bank als Vermittler
@@ -85,10 +85,10 @@ classDiagram
 ### Ausführen
 
 ```powershell
-cd src\KN-D1\implementation-2
+cd src\KR\KN_D1\implementation_2
 javac -encoding UTF-8 -d out *.java
-java -cp out kn.d1.impl2.BankSimulation
-java -cp out kn.d1.impl2.BankTest
+java -cp out KR.KN_D1.implementation_2.BankSimulation
+java -cp out KR.KN_D1.implementation_2.BankTest
 ```
 
 Zu Beginn existieren diese Konten:
@@ -161,13 +161,13 @@ das Objekt.
 ## 6. Dateien
 
 ```text
-KN-D1/
+KN_D1/
 ├── README.md
-├── implementation-1/
+├── implementation_1/
 │   ├── Konto.java
 │   ├── KontoTest.java
 │   └── Starter.java
-└── implementation-2/
+└── implementation_2/
     ├── Bank.java
     ├── Bankkonto.java
     ├── BankSimulation.java

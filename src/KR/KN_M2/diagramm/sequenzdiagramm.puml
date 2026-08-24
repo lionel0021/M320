@@ -1,5 +1,5 @@
 @startuml sequenzdiagramm
-' KN-M2 / Modul 320 - Sequenzdiagramm
+' KR.KN-M2 / Modul 320 - Sequenzdiagramm
 ' Use Case: "Benutzer stellt eine Support-Frage" (TechSupportApp)
 ' Code: https://gitlab.com/JulianKaser/javaressources/-/tree/main/code/TechSupportApp
 

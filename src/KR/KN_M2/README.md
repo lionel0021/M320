@@ -1,8 +1,8 @@
-# KN-M2 – Sequenzdiagramm (Modul 320)
+# KR.KN-M2 – Sequenzdiagramm (Modul 320)
 
 | | |
 |---|---|
-| **Kompetenznachweis** | KN-M2 – Interaktion zwischen Objekten grafisch darstellen |
+| **Kompetenznachweis** | KR.KN-M2 – Interaktion zwischen Objekten grafisch darstellen |
 | **Autor** | Nico Schult (GitHub: ZH-NICO) |
 | **Modul** | M320 – Objektorientiert programmieren |
 | **Tool** | PlantUML |
@@ -52,10 +52,10 @@ Produktionsklassen sowie einer Testklasse:
 ### So wird es gestartet
 
 ```bash
-cd src/KN-M2/code
+cd src/KR/KN_M2/code
 javac -encoding UTF-8 -d out *.java
-java -cp out kn.m2.Starter
-java -cp out kn.m2.SupportSystemTest
+java -cp out KR.KN_M2.code.Starter
+java -cp out KR.KN_M2.code.SupportSystemTest
 ```
 
 ### Testlauf (hat funktioniert)
@@ -234,7 +234,7 @@ Verwandte Rahmen: `loop` (Wiederholung), `opt` (optional, nur wenn Bedingung sti
 ## 10. Dateien in diesem Ordner
 
 ```text
-KN-M2/
+KN_M2/
 ├── README.md                            <- diese Dokumentation
 ├── code/                                <- refaktorierte TechSupportApp
 │   ├── Starter.java

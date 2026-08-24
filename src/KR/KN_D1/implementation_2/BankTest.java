@@ -1,4 +1,4 @@
-package kn.d1.impl2;
+package KR.KN_D1.implementation_2;
 
 public class BankTest {
     public static void main(String[] args) {

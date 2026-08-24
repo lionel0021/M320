@@ -1,4 +1,4 @@
-package kn.d1.impl2;
+package KR.KN_D1.implementation_2;
 
 import java.math.BigDecimal;
 import java.util.Objects;

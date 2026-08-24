@@ -4,29 +4,29 @@
 
 | Kompetenznachweis | Thema | Dokumentation |
 |---|---|---|
-| KN-M1 | UML-Klassendiagramm – Szenario 2: Online-Shop | [KN-M1 öffnen](src/KN-M1/szenario-2-online-shop.md) |
-| KN-M2 | UML-Sequenzdiagramm – Tech-Support App | [KN-M2 öffnen](src/KN-M2/README.md) |
-| KN-M3 | UML-Klassendiagramm – Interfaces | [KN-M3 öffnen](src/KN-M3/README.md) |
-| KN-D1 | Datenkapselung und Objektkommunikation – Banksimulation | [KN-D1 öffnen](src/KN-D1/README.md) |
+| KR.KN-M1 | UML-Klassendiagramm – Szenario 2: Online-Shop | [KR.KN-M1 öffnen](src/KR/KN-M1/szenario-2-online-shop.md) |
+| KR.KN-M2 | UML-Sequenzdiagramm – Tech-Support App | [KR.KN-M2 öffnen](src/KR/KN_M2/README.md) |
+| KR.KN-M3 | UML-Klassendiagramm – Interfaces | [KR.KN-M3 öffnen](src/KR/KN-M3/README.md) |
+| KR.KN-D1 | Datenkapselung und Objektkommunikation – Banksimulation | [KR.KN-D1 öffnen](src/KR/KN_D1/README.md) |
 
-## KN-M1
+## KR.KN-M1
 
-- [Lösung und Begründungen](src/KN-M1/szenario-2-online-shop.md)
-- [PlantUML-Quelldatei](src/KN-M1/online-shop.puml)
+- [Lösung und Begründungen](src/KR/KN-M1/szenario-2-online-shop.md)
+- [PlantUML-Quelldatei](src/KR/KN-M1/online-shop.puml)
 
-## KN-M2
+## KR.KN-M2
 
-- [Dokumentation](src/KN-M2/README.md)
-- [Programmcode](src/KN-M2/code/)
-- [Sequenzdiagramme](src/KN-M2/diagramm/)
+- [Dokumentation](src/KR/KN_M2/README.md)
+- [Programmcode](src/KR/KN_M2/code/)
+- [Sequenzdiagramme](src/KR/KN_M2/diagramm/)
 
-## KN-M3
+## KR.KN-M3
 
-- [Dokumentation](src/KN-M3/README.md)
-- [Klassendiagramme](src/KN-M3/diagramm/)
+- [Dokumentation](src/KR/KN-M3/README.md)
+- [Klassendiagramme](src/KR/KN-M3/diagramm/)
 
-## KN-D1
+## KR.KN-D1
 
-- [Dokumentation](src/KN-D1/README.md)
-- [Implementation 1 – direkte Kontokommunikation](src/KN-D1/implementation-1/)
-- [Implementation 2 – interaktive Bankverwaltung](src/KN-D1/implementation-2/)
+- [Dokumentation](src/KR/KN_D1/README.md)
+- [Implementation 1 – direkte Kontokommunikation](src/KR/KN_D1/implementation_1/)
+- [Implementation 2 – interaktive Bankverwaltung](src/KR/KN_D1/implementation_2/)

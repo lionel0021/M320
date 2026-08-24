@@ -1,4 +1,4 @@
-package kn.m2;
+package KR.KN_M2.code;
 
 import java.io.PrintStream;
 import java.util.Objects;
