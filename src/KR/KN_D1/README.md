@@ -24,8 +24,8 @@ Varianten der Banksimulation.
 Die einfache Variante besitzt zwei Klassen:
 
 - `Konto` kapselt Kontonummer, Inhaber und Saldo.
-- `Starter` erzeugt zwei Konten und führt Einzahlungen, Abhebungen und eine
-  Überweisung aus.
+- `Starter` erzeugt zwei Konten und stellt ein Konsolenmenü bereit, über das
+  der Benutzer selbst einzahlt, abhebt und überweist (Eingabe über die Tastatur).
 
 Beim Aufruf `privatkonto.ueberweisenAn(sparkonto, 30_000)` erhält das
 Quellkonto ein anderes `Konto`-Objekt und einen Betrag. Das Quellkonto ruft

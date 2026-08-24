@@ -87,7 +87,7 @@ public int anzahlPassagiere() {
 ## 5. Ausführen
 
 ```bash
-cd src/KN-D2/code
+cd src/KR/KN_D2/code
 javac -encoding UTF-8 -d out *.java
 java -cp out kn.d2.Starter        # Demo
 java -cp out kn.d2.ZeitplanTest   # Tests
@@ -130,7 +130,7 @@ Delegation (`passagiereVon`), Zeit-Suche und Entfernen. → *"Alle Tests erfolgr
 ## 7. Dateien
 
 ```text
-KN-D2/
+KN_D2/
 ├── README.md
 ├── code/
 │   ├── Passagier.java      <- eigenständig (Aggregations-Teil)
