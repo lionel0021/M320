@@ -26,6 +26,9 @@ Die einfache Variante besitzt zwei Klassen:
 - `Konto` kapselt Kontonummer, Inhaber und Saldo.
 - `Starter` erzeugt zwei Konten und stellt ein Konsolenmenü bereit, über das
   der Benutzer selbst einzahlt, abhebt und überweist (Eingabe über die Tastatur).
+- `Beispiel2` zeigt dasselbe Prinzip ohne Eingabe an einem Lohn-Szenario: ein
+  Arbeitgeber-Konto überweist Lohn an zwei Mitarbeiter-Konten, danach spart eines
+  einen Teil auf ein Sparkonto.
 
 Beim Aufruf `privatkonto.ueberweisenAn(sparkonto, 30_000)` erhält das
 Quellkonto ein anderes `Konto`-Objekt und einen Betrag. Das Quellkonto ruft
@@ -53,6 +56,7 @@ classDiagram
 cd src\KR\KN_D1\implementation_1
 javac -encoding UTF-8 -d out *.java
 java -cp out KR.KN_D1.implementation_1.Starter
+java -cp out KR.KN_D1.implementation_1.Beispiel2
 java -cp out KR.KN_D1.implementation_1.KontoTest
 ```
 
