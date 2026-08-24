@@ -1,5 +1,5 @@
 @startuml klassendiagramm
-' KN-M3 / Modul 320 - Klassendiagramm mit Interface
+' KR.KN-M3 / Modul 320 - Klassendiagramm mit Interface
 ' Beschreibung A: Kaffee-Bestellung mit verschiedenen Zahlungsarten
 
 title Kaffee-Bestellung - flexible Loesung mit Interface (Beschreibung A)

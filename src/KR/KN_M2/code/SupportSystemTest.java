@@ -1,4 +1,4 @@
-package kn.m2;
+package KR.KN_M2.code;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,7 +10,7 @@ public class SupportSystemTest {
         testResponderIstUnabhaengigVonGrossschreibung();
         testLeereEingabeUndSpaeteRegelnSindErreichbar();
         testVollstaendigerDialog();
-        System.out.println("KN-M2: Alle Tests erfolgreich.");
+        System.out.println("KR.KN-M2: Alle Tests erfolgreich.");
     }
 
     private static void testResponderIstUnabhaengigVonGrossschreibung() {

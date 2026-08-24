@@ -1,4 +1,4 @@
-# KN-M3 – Klassendiagramm mit Interfaces (Modul 320)
+# KR.KN-M3 – Klassendiagramm mit Interfaces (Modul 320)
 
 Nico Schult (ZH-NICO) · Tool: PlantUML · 17.08.2026
 Auftrag: <https://gitlab.com/ch-tbz-it/Stud/m320/-/tree/main/Kompetenzen/KN-M3>
@@ -89,7 +89,7 @@ Dependency Injection) statt im Code `new` aufrufen.
 ## 5. Dateien
 
 ```text
-KN-M3/
+KR.KN-M3/
 ├── README.md
 └── diagramm/
     ├── klassendiagramm.puml / .png / .svg          <- Lösung mit Interface
