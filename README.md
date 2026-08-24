@@ -8,6 +8,7 @@
 | KN-M2 | UML-Sequenzdiagramm – Tech-Support App | [KN-M2 öffnen](src/KN-M2/README.md) |
 | KN-M3 | UML-Klassendiagramm – Interfaces | [KN-M3 öffnen](src/KN-M3/README.md) |
 | KN-D1 | Datenkapselung und Objektkommunikation – Banksimulation | [KN-D1 öffnen](src/KN-D1/README.md) |
+| KN-D2 | HAT-Beziehungen – Aggregation, Komposition, Delegation (Flüge & Zeitplan) | [KN-D2 öffnen](src/KN-D2/README.md) |
 
 ## KN-M1
 
@@ -30,3 +31,10 @@
 - [Dokumentation](src/KN-D1/README.md)
 - [Implementation 1 – direkte Kontokommunikation](src/KN-D1/implementation-1/)
 - [Implementation 2 – interaktive Bankverwaltung](src/KN-D1/implementation-2/)
+
+
+## KN-D2
+
+- [Dokumentation](src/KN-D2/README.md)
+- [Programmcode](src/KN-D2/code/)
+- [Klassendiagramm](src/KN-D2/diagramm/)

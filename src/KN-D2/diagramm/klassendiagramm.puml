@@ -1,0 +1,53 @@
+@startuml klassendiagramm
+' KN-D2 / Modul 320 - HAT-Beziehungen: Aggregation vs. Komposition
+title Fluege und Zeitplan - HAT-Beziehungen
+
+skinparam classAttributeIconSize 0
+
+class Zeitplan {
+  - fluege : List<Flug>
+  + addFlug(f : Flug)
+  + passagiereVon(nr : String) : int
+  + fluegeAb(std : int, min : int) : List<Flug>
+  + sucheFlug(nr : String) : Flug
+}
+
+class Flug {
+  - flugNummer : String
+  - ziel : String
+  + addPassagier(p : Passagier)
+  + removePassagier(p : Passagier) : boolean
+  + anzahlPassagiere() : int
+}
+
+class Passagier {
+  - name : String
+  - passNummer : String
+}
+
+class Abflugzeit {
+  - stunde : int
+  - minute : int
+  + alsMinuten() : int
+}
+
+' hohle Raute = AGGREGATION (Teil lebt unabhaengig weiter)
+Zeitplan "1" o-- "0..*" Flug : hat (Aggregation) >
+Flug "1" o-- "0..*" Passagier : hat (Aggregation) >
+
+' volle Raute = KOMPOSITION (Teil stirbt mit dem Ganzen)
+Flug "1" *-- "1" Abflugzeit : besteht aus (Komposition) >
+
+note bottom of Passagier
+  Aggregation: derselbe Passagier
+  kann auf mehreren Fluegen stehen und
+  lebt weiter, wenn ein Flug geloescht wird.
+end note
+
+note bottom of Abflugzeit
+  Komposition: wird vom Flug selbst
+  erzeugt (new im Konstruktor) und
+  gehoert nur diesem einen Flug.
+end note
+
+@enduml
