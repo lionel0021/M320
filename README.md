@@ -9,6 +9,7 @@
 | KR.KN-M3 | UML-Klassendiagramm – Interfaces | [KR.KN-M3 öffnen](src/KR/KN-M3/README.md) |
 | KR.KN-D1 | Datenkapselung und Objektkommunikation – Banksimulation | [KR.KN-D1 öffnen](src/KR/KN_D1/README.md) |
 | KR.KN-D2 | HAT-Beziehungen – Aggregation, Komposition, Delegation (Flüge & Zeitplan) | [KR.KN-D2 öffnen](src/KR/KN_D2/README.md) |
+| KR.KN-V1 | Vererbung, AbstractList und Iterator – Bibliothek | [KR.KN-V1 öffnen](src/KR/KN_V1/README.md) |
 
 ## KR.KN-M1
 
@@ -37,3 +38,9 @@
 - [Dokumentation](src/KR/KN_D2/README.md)
 - [Programmcode](src/KR/KN_D2/code/)
 - [Klassendiagramm](src/KR/KN_D2/diagramm/)
+
+## KR.KN-V1
+
+- [Lösung und Antworten](src/KR/KN_V1/README.md)
+- [Programmcode](src/KR/KN_V1/code/)
+- [Klassendiagramm](src/KR/KN_V1/diagramm/klassendiagramm.puml)

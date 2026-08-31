@@ -1,0 +1,71 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Medium {
+  - titel: String
+  - erscheinungsjahr: int
+  - inventarnummer: String
+  - ausgeliehen: boolean
+  + getTitel(): String
+  + getErscheinungsjahr(): int
+  + getInventarnummer(): String
+  + isAusgeliehen(): boolean
+  + ausleihen(): void
+  + zurueckgeben(): void
+}
+
+class Buch {
+  - autor: String
+  - isbn: String
+}
+
+class Zeitschrift {
+  - ausgabe: int
+  - monat: int
+}
+
+class DVD {
+  - laufzeitInMinuten: int
+  - regisseur: String
+}
+
+class EBook {
+  - dateigroesseInMegabyte: double
+  - dateiformat: String
+}
+
+class Bibliothek {
+  - medien: MedienListe
+  + hinzufuegen(medium: Medium): void
+  + suchen(inventarnummer: String): Medium
+  + entfernen(inventarnummer: String): void
+  + anzahlMedien(): int
+}
+
+class MedienListe {
+  - daten: ArrayList<Medium>
+  + get(index: int): Medium
+  + size(): int
+  + add(index: int, medium: Medium): void
+  + set(index: int, medium: Medium): Medium
+  + remove(index: int): Medium
+}
+
+class AusgelieheneMedienIterator {
+  + hasNext(): boolean
+  + next(): Medium
+}
+
+abstract class "AbstractList<Medium>" as AbstractList
+interface "Iterator<Medium>" as Iterator
+
+Medium <|-- Buch
+Medium <|-- Zeitschrift
+Medium <|-- DVD
+Medium <|-- EBook
+AbstractList <|-- MedienListe
+Iterator <|.. AusgelieheneMedienIterator
+Bibliothek *-- MedienListe
+MedienListe o-- "0..*" Medium
+AusgelieheneMedienIterator --> Medium
+@enduml
