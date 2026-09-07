@@ -89,18 +89,24 @@ public int anzahlPassagiere() {
 ```bash
 cd src/KR/KN_D2/code
 javac -encoding UTF-8 -d out *.java
-java -cp out kn.d2.Starter        # Demo
-java -cp out kn.d2.ZeitplanTest   # Tests
+java -cp out KR.KN_D2.code.Starter        # Konsolenmenue
+java -cp out KR.KN_D2.code.ZeitplanTest   # Tests
 ```
 
-Demo-Ausgabe (gekürzt):
+Das Programm startet mit einem leeren Zeitplan. Über das Menü lassen sich
+Flüge erfassen, Passagiere hinzufügen oder entfernen sowie Flüge und Passagiere
+anzeigen. Bei einer bereits bekannten Passnummer wird derselbe Passagier
+wiederverwendet, auch auf mehreren Flügen. Daten bleiben nur während der Laufzeit erhalten.
+
+Menü:
 ```text
-Alle Fluege:
-  LX14 -> London um 08:30 (2 Passagiere)
-  LX88 -> New York um 13:05 (1 Passagiere)
-Passagiere auf LX14: 2
-Nach Entfernen von Ben -> LX14 hat 1 Passagiere
-Ben lebt weiter (Aggregation): Ben Muster (P456)
+1 Flug erfassen
+2 Passagier einem Flug hinzufuegen
+3 Passagier aus einem Flug entfernen
+4 Alle Fluege anzeigen
+5 Fluege ab Uhrzeit anzeigen
+6 Passagiere eines Fluges anzeigen
+0 Beenden
 ```
 
 `ZeitplanTest` prüft: Aggregation (Passagier lebt nach `remove` weiter),

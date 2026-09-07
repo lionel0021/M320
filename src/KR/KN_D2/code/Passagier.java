@@ -1,4 +1,4 @@
-package kn.d2;
+package KR.KN_D2.code;
 
 // Eigenstaendiges Objekt. Ein Passagier existiert unabhaengig von einem Flug
 // und kann sogar auf mehreren Fluegen stehen. -> Teil einer AGGREGATION.

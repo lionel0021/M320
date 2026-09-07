@@ -1,4 +1,4 @@
-package kn.d2;
+package KR.KN_D2.code;
 
 // Kleines Wert-Objekt fuer die Abflugzeit (Stunde:Minute).
 // Es wird vom Flug selbst erzeugt und gehoert nur ihm -> Teil einer KOMPOSITION.
