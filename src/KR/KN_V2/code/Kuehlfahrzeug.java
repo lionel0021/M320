@@ -1,5 +1,13 @@
 package KR.KN_V2.code;
 
+/**
+ * Beschreibt ein Lieferfahrzeug fuer gekuehlte Waren.
+ *
+ * <p>Eine Lieferung erfordert ein verfuegbares Fahrzeug und aktive Kuehlung
+ * bei hoechstens 7 Grad. Aktive Kuehlung verursacht einen Zuschlag von
+ * 0.30 CHF pro Kilometer. Eine distanzabhaengige Reichweitengrenze wird
+ * hier nicht modelliert.</p>
+ */
 public class Kuehlfahrzeug extends Lieferfahrzeug {
     private final double temperatur;
     private final boolean kuehlungAktiv;

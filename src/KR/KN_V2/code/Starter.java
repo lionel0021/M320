@@ -3,6 +3,13 @@ package KR.KN_V2.code;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Stellt das Konsolenmenue fuer die Fuhrparkverwaltung bereit.
+ *
+ * <p>Laedt beim Start Beispielfahrzeuge und verarbeitet Benutzereingaben zur
+ * Verwaltung, Reservierung und zum Kostenvergleich. Die Fahrzeugverwaltung
+ * wird an {@link Fuhrpark} delegiert.</p>
+ */
 public class Starter {
     private final Fuhrpark fuhrpark = new Fuhrpark();
     private final Scanner scanner = new Scanner(System.in);
@@ -47,6 +54,10 @@ public class Starter {
         System.out.print("Auswahl: ");
     }
 
+    /**
+     * Laedt auch absichtlich ungeeignete Fahrzeuge, damit die Eignungspruefung
+     * bei Ueberladung, zu hoher Temperatur und begrenzter Reichweite sichtbar wird.
+     */
     private void beispieldatenLaden() {
         fuhrpark.add(new Transporter("T1", "ZH-1001", 1.20, 50000, 1500, 900));
         fuhrpark.add(new Transporter("T2", "ZH-1002", 1.10, 80000, 1000, 1200));
@@ -128,6 +139,10 @@ public class Starter {
         }
     }
 
+    /**
+     * Vergleicht nur einsatzfaehige Fahrzeuge. Bei gleichen Kosten bleibt das zuerst
+     * aufgenommene Fahrzeug die guenstigste Wahl, da nur kleinere Kosten es ersetzen.
+     */
     private void gesamtkostenVergleichen() {
         double distanz = frageZahl("Distanz km: ");
         List<Lieferfahrzeug> geeignet = fuhrpark.findeGeeigneteFahrzeuge(distanz);
@@ -157,6 +172,13 @@ public class Starter {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Akzeptiert Dezimalkomma und Dezimalpunkt und wiederholt die Abfrage bei Parsefehlern.
+     * Fachliche Grenzen wie positive Distanzen werden hier nicht geprueft.
+     *
+     * @param frage Eingabeaufforderung fuer die Konsole
+     * @return eingelesene Zahl
+     */
     private double frageZahl(String frage) {
         while (true) {
             System.out.print(frage);

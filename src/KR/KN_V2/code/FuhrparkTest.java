@@ -2,6 +2,13 @@ package KR.KN_V2.code;
 
 import java.util.List;
 
+/**
+ * Prueft die Fahrzeugmodelle und die Fuhrparkverwaltung mit ausfuehrbaren Selbsttests.
+ *
+ * <p>Die Tests decken Kostenberechnung, Liefereignung, doppelte Reservierungen,
+ * Fahrzeugauswahl, Gesamtkosten und das Entfernen ab. Ein fehlgeschlagener Test
+ * bricht die Ausfuehrung mit einem {@link AssertionError} ab.</p>
+ */
 public class FuhrparkTest {
     public static void main(String[] args) {
         testPolymorpheKosten();

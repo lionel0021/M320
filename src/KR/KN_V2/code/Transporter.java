@@ -1,5 +1,12 @@
 package KR.KN_V2.code;
 
+/**
+ * Beschreibt einen Transporter mit begrenzter Nutzlast und beladungsabhaengigen Kosten.
+ *
+ * <p>Eine Lieferung ist nur moeglich, wenn das Fahrzeug verfuegbar ist und die
+ * aktuelle Ladung die maximale Nutzlast nicht ueberschreitet. Eine Begrenzung
+ * der Fahrstrecke wird nicht modelliert.</p>
+ */
 public class Transporter extends Lieferfahrzeug {
     private final double maxNutzlastKg;
     private final double aktuelleLadungKg;
@@ -11,6 +18,14 @@ public class Transporter extends Lieferfahrzeug {
         this.aktuelleLadungKg = aktuelleLadungKg;
     }
 
+    /**
+     * Beruecksichtigt die Beladung durch einen linear steigenden Kostenzuschlag:
+     * leer gelten die Basiskosten, bei voller Nutzlast liegen sie 50 Prozent hoeher.
+     * Die Berechnung setzt eine positive maximale Nutzlast voraus.
+     *
+     * @param distanzKm geplante Strecke in Kilometern
+     * @return beladungsabhaengige Kosten in CHF, auch bei Ueberladung
+     */
     @Override
     public double berechneKosten(double distanzKm) {
         double ladungsfaktor = 1.0 + (aktuelleLadungKg / maxNutzlastKg) * 0.5;

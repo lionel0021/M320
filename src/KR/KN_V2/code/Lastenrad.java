@@ -1,5 +1,12 @@
 package KR.KN_V2.code;
 
+/**
+ * Beschreibt ein Lastenrad fuer Lieferungen innerhalb einer maximalen Fahrstrecke.
+ *
+ * <p>Die Kosten entsprechen den Basiskosten pro Kilometer ohne Zuschlag.
+ * Fuer eine Lieferung muss das Lastenrad verfuegbar sein und die geplante
+ * Strecke innerhalb seiner Distanzgrenze liegen.</p>
+ */
 public class Lastenrad extends Lieferfahrzeug {
     private final double maxDistanzKm;
 

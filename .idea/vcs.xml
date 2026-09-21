@@ -2,5 +2,12 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../2026uK294_LiSch_movies" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Machine_Learning_Project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Tic-Tac-Toe" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../UNO" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../tictactoe" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../untitled" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../untitled1" vcs="Git" />
   </component>
 </project>

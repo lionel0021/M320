@@ -1,5 +1,12 @@
 package KR.KN_V2.code;
 
+/**
+ * Definiert die gemeinsamen Eigenschaften und den Reservierungszustand eines Lieferfahrzeugs.
+ *
+ * <p>Die Unterklassen bestimmen Kosten und Liefereignung, damit {@link Fuhrpark}
+ * unterschiedliche Fahrzeugtypen einheitlich verwalten kann. Neue Fahrzeuge
+ * sind zunaechst verfuegbar und koennen reserviert und wieder freigegeben werden.</p>
+ */
 public abstract class Lieferfahrzeug {
     private final String id;
     private final String kennzeichen;
@@ -15,10 +22,28 @@ public abstract class Lieferfahrzeug {
         this.verfuegbar = true;
     }
 
+    /**
+     * Berechnet die Kosten unabhaengig davon, ob das Fahrzeug die Strecke liefern kann.
+     * Fuer die Einsatzplanung muss zusaetzlich {@link #kannLiefern(double)} geprueft werden.
+     *
+     * @param distanzKm geplante Strecke in Kilometern
+     * @return fahrzeugabhaengige Kosten in CHF
+     */
     public abstract double berechneKosten(double distanzKm);
 
+    /**
+     * Prueft Verfuegbarkeit und fahrzeugspezifische Grenzen, ohne das Fahrzeug zu reservieren.
+     *
+     * @param distanzKm geplante Strecke in Kilometern
+     * @return {@code true}, wenn das Fahrzeug frei ist und seine Lieferbedingungen erfuellt
+     */
     public abstract boolean kannLiefern(double distanzKm);
 
+    /**
+     * Reserviert das Fahrzeug ohne Pruefung einer konkreten Lieferstrecke.
+     *
+     * @throws IllegalStateException wenn das Fahrzeug bereits reserviert ist
+     */
     public void reservieren() {
         if (!verfuegbar) {
             throw new IllegalStateException("Fahrzeug " + id + " ist bereits reserviert.");
@@ -26,6 +51,11 @@ public abstract class Lieferfahrzeug {
         verfuegbar = false;
     }
 
+    /**
+     * Gibt eine bestehende Reservierung frei; eine doppelte Freigabe gilt als Bedienfehler.
+     *
+     * @throws IllegalStateException wenn das Fahrzeug bereits frei ist
+     */
     public void freigeben() {
         if (verfuegbar) {
             throw new IllegalStateException("Fahrzeug " + id + " ist bereits frei.");

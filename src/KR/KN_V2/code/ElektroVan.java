@@ -1,5 +1,13 @@
 package KR.KN_V2.code;
 
+/**
+ * Beschreibt einen elektrisch betriebenen Lieferwagen mit akkuabhaengiger Reichweite.
+ *
+ * <p>Die Kosten betragen 60 Prozent der Basiskosten. Die angegebene Reichweite
+ * gilt bei vollem Akku; die nutzbare Strecke wird proportional zum aktuellen
+ * Akkustand berechnet. Eine Lieferung erfordert ausreichende Reichweite und
+ * ein verfuegbares Fahrzeug.</p>
+ */
 public class ElektroVan extends Lieferfahrzeug {
     private final double akkuProzent;
     private final double reichweiteKm;
