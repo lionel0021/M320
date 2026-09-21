@@ -1,0 +1,55 @@
+@startuml klassendiagramm
+title KN-V3 - Portfolio und StockExchange (Interfaces, Polymorphismus)
+
+skinparam classAttributeIconSize 0
+
+class Portfolio {
+  - positionen : List<Position>
+  + addPosition(aktie : Aktie, anzahl : int)
+  + berechneWert(boerse : StockExchange) : double
+}
+
+class Position {
+  - anzahl : int
+}
+
+class Aktie {
+  - symbol : String
+  - name : String
+}
+
+interface StockExchange {
+  + {abstract} getName() : String
+  + {abstract} istKotiert(symbol : String) : boolean
+  + {abstract} getKurs(symbol : String) : double
+  + {abstract} getAktien() : List<Aktie>
+}
+
+class BoerseZuerich {
+  + getName() : String
+  + istKotiert(symbol : String) : boolean
+  + getKurs(symbol : String) : double
+  + getAktien() : List<Aktie>
+}
+
+class BoerseNewYork {
+  + getName() : String
+  + istKotiert(symbol : String) : boolean
+  + getKurs(symbol : String) : double
+  + getAktien() : List<Aktie>
+}
+
+Portfolio "1" o-- "0..*" Position : hat
+Position "1" o-- "1" Aktie : hat
+Portfolio ..> StockExchange : verwendet (Parameter)
+StockExchange <|.. BoerseZuerich
+StockExchange <|.. BoerseNewYork
+
+note bottom of Portfolio
+  Portfolio kennt nur das Interface StockExchange.
+  berechneWert(boerse) laeuft je nach uebergebener
+  Boerse anders -> Polymorphismus. Neue Boerse =
+  neue Implementierung, Portfolio bleibt gleich.
+end note
+
+@enduml
