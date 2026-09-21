@@ -12,6 +12,7 @@
 | KR.KN-D3 | Delegation, Validierung und API – Krypto-Marktdaten (BTC, SOL, ETH) | [KR.KN-D3 öffnen](src/KR/KN_D3/README.md) |
 | KR.KN-V1 | Vererbung, AbstractList und Iterator – Bibliothek | [KR.KN-V1 öffnen](src/KR/KN_V1/README.md) |
 | KR.KN-V2 | Polymorphismus – Lieferfahrzeuge verwalten | [KR.KN-V2 öffnen](src/KR/KN_V2/README.md) |
+| KR.KN-V3 | Interfaces flexibel und polymorph – Aktien-Portfolio | [KR.KN-V3 öffnen](src/KR/KN_V3/README.md) |
 
 ## KR.KN-M1
 
@@ -53,3 +54,10 @@
 - [Dokumentation](src/KR/KN_V2/README.md)
 - [Programmcode](src/KR/KN_V2/code/)
 - [Klassendiagramm](src/KR/KN_V2/diagramm/)
+
+
+## KR.KN-V3
+
+- [Dokumentation](src/KR/KN_V3/README.md)
+- [Programmcode](src/KR/KN_V3/code/)
+- [Klassendiagramm](src/KR/KN_V3/diagramm/)
