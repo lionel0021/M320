@@ -1,0 +1,69 @@
+@startuml klassendiagramm
+title KN-V2 - Lieferfahrzeuge (Polymorphismus)
+
+skinparam classAttributeIconSize 0
+
+abstract class Lieferfahrzeug {
+  - id : String
+  - kennzeichen : String
+  - basisKostenProKm : double
+  - aktuellerKilometerstand : double
+  - verfuegbar : boolean
+  + {abstract} berechneKosten(distanzKm : double) : double
+  + {abstract} kannLiefern(distanzKm : double) : boolean
+  + reservieren()
+  + freigeben()
+  + info() : String
+  + printOut() : String
+}
+
+class Transporter {
+  - maxNutzlastKg : double
+  - aktuelleLadungKg : double
+  + berechneKosten(distanzKm : double) : double
+  + kannLiefern(distanzKm : double) : boolean
+}
+
+class Kuehlfahrzeug {
+  - temperatur : double
+  - kuehlungAktiv : boolean
+  + berechneKosten(distanzKm : double) : double
+  + kannLiefern(distanzKm : double) : boolean
+}
+
+class ElektroVan {
+  - akkuProzent : double
+  - reichweiteKm : double
+  + berechneKosten(distanzKm : double) : double
+  + kannLiefern(distanzKm : double) : boolean
+}
+
+class Lastenrad {
+  - maxDistanzKm : double
+  + berechneKosten(distanzKm : double) : double
+  + kannLiefern(distanzKm : double) : boolean
+}
+
+class Fuhrpark {
+  - fahrzeuge : List<Lieferfahrzeug>
+  + add(f : Lieferfahrzeug)
+  + removeById(id : String) : boolean
+  + findById(id : String) : Lieferfahrzeug
+  + printAlle()
+  + berechneGesamtkosten(distanzKm : double) : double
+  + findeGeeigneteFahrzeuge(distanzKm : double) : List<Lieferfahrzeug>
+}
+
+Lieferfahrzeug <|-- Transporter
+Lieferfahrzeug <|-- Kuehlfahrzeug
+Lieferfahrzeug <|-- ElektroVan
+Lieferfahrzeug <|-- Lastenrad
+Fuhrpark "1" o-- "0..*" Lieferfahrzeug : verwaltet
+
+note bottom of Fuhrpark
+  arbeitet nur mit dem Obertyp Lieferfahrzeug.
+  Keine instanceof-Kette: das richtige Verhalten
+  kommt aus den ueberschriebenen Methoden.
+end note
+
+@enduml
