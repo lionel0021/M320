@@ -13,6 +13,7 @@
 | KR.KN-V1 | Vererbung, AbstractList und Iterator – Bibliothek | [KR.KN-V1 öffnen](src/KR/KN_V1/README.md) |
 | KR.KN-V2 | Polymorphismus – Lieferfahrzeuge verwalten | [KR.KN-V2 öffnen](src/KR/KN_V2/README.md) |
 | KR.KN-V3 | Interfaces flexibel und polymorph – Aktien-Portfolio | [KR.KN-V3 öffnen](src/KR/KN_V3/README.md) |
+| KR.KN-Q3 | Mini Helpdesk Ticket System – FIFO, Priorität, SLA, Report | [KR.KN-Q3 öffnen](src/KR/KN_Q3/README.md) |
 
 ## KR.KN-M1
 
@@ -61,3 +62,9 @@
 - [Dokumentation](src/KR/KN_V3/README.md)
 - [Programmcode](src/KR/KN_V3/code/)
 - [Klassendiagramm](src/KR/KN_V3/diagramm/)
+
+
+## KR.KN-Q3
+
+- [Dokumentation](src/KR/KN_Q3/README.md)
+- [Programmcode](src/KR/KN_Q3/code/)
