@@ -16,6 +16,7 @@
 | KR.KN-Q3 | Mini Helpdesk Ticket System – FIFO, Priorität, SLA, Report | [KR.KN-Q3 öffnen](src/KR/KN_Q3/README.md) |
 | KR.KN-M4 | Eigenes OO-Projekt – Nebel über Arkenfall (Zork-Textadventure) | [KR.KN-M4 öffnen](src/KR/KN_M4/README.md) |
 | KR.KN-D3 (Nico) | Delegation, Service-Interface, eigene Exception – Wetter-Abfrage | [KR.KN-D3 (Nico) öffnen](src/KR/KN_D3_nico/README.md) |
+| KR.KN-M4 (Nico) | Abstraktionen (Interface + abstrakte Klasse) und UML-Klassendiagramm – Medienverwaltung | [KR.KN-M4 (Nico) öffnen](src/KR/N4_nico/M4/README.md) |
 
 ## KR.KN-M1
 
@@ -82,3 +83,9 @@
 
 - [Dokumentation](src/KR/KN_D3_nico/README.md)
 - [Programmcode](src/KR/KN_D3_nico/code/)
+
+## KR.KN-M4 (Nico)
+
+- [Dokumentation](src/KR/N4_nico/M4/README.md)
+- [Programmcode](src/KR/N4_nico/M4/code/)
+- [UML-Klassendiagramm (PlantUML)](src/KR/N4_nico/M4/uml.puml)

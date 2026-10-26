@@ -1,0 +1,58 @@
+@startuml
+title M4 - Medienverwaltung (Interface + abstrakte Klasse)
+
+interface Ausleihbar {
+  +istVerfuegbar(): boolean
+  +ausleihen(name: String): void
+  +zurueckgeben(): void
+}
+
+abstract class Medium {
+  -titel: String
+  -jahr: int
+  -ausgeliehenAn: String
+  +getTitel(): String
+  +getJahr(): int
+  +{abstract} art(): String
+  +{abstract} beschreibung(): String
+  +istVerfuegbar(): boolean
+  +ausleihen(name: String): void
+  +zurueckgeben(): void
+  +status(): String
+  +info(): String
+}
+
+class Buch {
+  -autor: String
+  -seiten: int
+  +art(): String
+  +beschreibung(): String
+}
+
+class DVD {
+  -regisseur: String
+  -minuten: int
+  +art(): String
+  +beschreibung(): String
+}
+
+class Zeitschrift {
+  -ausgabe: int
+  +art(): String
+  +beschreibung(): String
+}
+
+class Bibliothek {
+  -medien: List<Medium>
+  +aufnehmen(m: Medium): void
+  +alle(): List<Medium>
+  +verfuegbare(): List<Medium>
+  +anzahl(): int
+}
+
+Ausleihbar <|.. Medium
+Medium <|-- Buch
+Medium <|-- DVD
+Medium <|-- Zeitschrift
+Bibliothek o--> "*" Medium : verwaltet
+@enduml
