@@ -1,0 +1,20 @@
+@startuml
+title M4 - Use Case "Spieler bewegt sich" (gehe norden)
+
+actor Benutzer
+participant Spielwelt
+participant GeheBefehl
+participant Spieler
+participant "Zielraum : Raum" as Raum
+
+Benutzer -> Spielwelt : verarbeite("gehe norden")
+Spielwelt -> Spielwelt : befehl = befehle.get("gehe")
+Spielwelt -> GeheBefehl : ausfuehren(welt, "norden")
+GeheBefehl -> Spieler : getRaum().getAusgang("norden")
+Spieler --> GeheBefehl : Zielraum
+GeheBefehl -> Spieler : setRaum(Zielraum)
+GeheBefehl -> Raum : untersuchen()
+Raum --> GeheBefehl : Beschreibung
+GeheBefehl --> Spielwelt : Text
+Spielwelt --> Benutzer : Raumbeschreibung
+@enduml

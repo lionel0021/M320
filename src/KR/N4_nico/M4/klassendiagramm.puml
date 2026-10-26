@@ -1,0 +1,69 @@
+@startuml
+title M4 - Text-Adventure: geplante Architektur
+
+abstract class Spielobjekt {
+  -name: String
+  -beschreibung: String
+  +getName(): String
+  +getBeschreibung(): String
+  +{abstract} untersuchen(): String
+}
+class Raum {
+  -ausgaenge: Map<String,Raum>
+  -gegenstaende: List<Gegenstand>
+  +setAusgang(richtung: String, ziel: Raum): void
+  +getAusgang(richtung: String): Raum
+  +addGegenstand(g: Gegenstand): void
+  +nimmGegenstand(name: String): Gegenstand
+  +untersuchen(): String
+}
+class Gegenstand {
+  +untersuchen(): String
+}
+class Lampe {
+  -an: boolean
+  +benutze(spieler: Spieler): String
+  +untersuchen(): String
+}
+class Spieler {
+  -raum: Raum
+  -inventar: List<Gegenstand>
+  +getRaum(): Raum
+  +setRaum(raum: Raum): void
+  +nimm(g: Gegenstand): void
+  +ausInventar(name: String): Gegenstand
+}
+class Spielwelt {
+  -spieler: Spieler
+  -befehle: Map<String,Befehl>
+  +registriere(b: Befehl): void
+  +verarbeite(eingabe: String): String
+}
+interface Benutzbar {
+  +benutze(spieler: Spieler): String
+}
+interface Befehl {
+  +schluesselwort(): String
+  +ausfuehren(welt: Spielwelt, argument: String): String
+}
+class GeheBefehl
+class SchauBefehl
+class NimmBefehl
+class InventarBefehl
+class BenutzeBefehl
+
+Spielobjekt <|-- Raum
+Spielobjekt <|-- Gegenstand
+Gegenstand <|-- Lampe
+Benutzbar <|.. Lampe
+Befehl <|.. GeheBefehl
+Befehl <|.. SchauBefehl
+Befehl <|.. NimmBefehl
+Befehl <|.. InventarBefehl
+Befehl <|.. BenutzeBefehl
+Spielwelt o--> Spieler
+Spielwelt o--> "*" Befehl
+Spieler --> Raum : aktueller Raum
+Spieler o--> "*" Gegenstand : inventar
+Raum o--> "*" Gegenstand
+@enduml
