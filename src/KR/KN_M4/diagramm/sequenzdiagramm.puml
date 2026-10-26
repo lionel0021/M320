@@ -1,0 +1,28 @@
+@startuml
+actor Spieler
+participant Starter
+participant GameEngine
+participant CommandParser
+participant UseCommand
+participant Inventory
+participant LanternItem
+participant GameState
+participant EventBus
+participant ConsoleNarrator
+
+Spieler -> Starter : "benutze Laterne an Krypta"
+Starter -> GameEngine : execute(eingabe)
+GameEngine -> CommandParser : parse(eingabe)
+CommandParser --> GameEngine : UseCommand
+GameEngine -> UseCommand : execute(state, events)
+UseCommand -> Inventory : find("Laterne")
+Inventory --> UseCommand : LanternItem
+UseCommand -> LanternItem : use(state, "Krypta")
+LanternItem -> GameState : setFlag(krypta_beleuchtet, true)
+LanternItem --> UseCommand : Erfolgstext
+UseCommand -> EventBus : publish(action, Erfolgstext)
+EventBus -> ConsoleNarrator : onEvent(GameEvent)
+ConsoleNarrator --> Spieler : zeigt Erfolgstext
+UseCommand --> GameEngine : leere Antwort
+GameEngine --> Starter : Antwort
+@enduml

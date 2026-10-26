@@ -1,0 +1,117 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Starter
+class GameEngine
+class GameState
+class QuestJournal
+class Quest
+enum QuestStatus
+class AchievementTracker
+class Achievement
+class GameClock
+enum WeatherPhase
+class CommandHistory
+class WorldMap
+class InputValidator
+interface Character
+class Mara
+class MarketTrader
+class StoneGuardian
+class DialogueService
+class Player
+class World
+class WorldFactory
+class Room
+enum RoomId
+enum Direction
+class Inventory
+abstract class Item
+class KeyItem
+class LanternItem
+class PrismItem
+class HerbItem
+interface Command
+class CommandParser
+class MoveCommand
+class TakeCommand
+class UseCommand
+class TalkCommand
+class LookCommand
+class InspectCommand
+class HelpCommand
+class InventoryCommand
+class MapCommand
+class SaveCommand
+class LoadCommand
+class QuitCommand
+class UnknownCommand
+class JournalCommand
+class AchievementsCommand
+class TimeCommand
+class HistoryCommand
+interface SaveRepository
+class PropertiesSaveRepository
+class EventBus
+interface GameEventListener
+class ConsoleNarrator
+class GameEvent
+
+Starter --> GameEngine
+GameEngine --> GameState
+GameEngine --> CommandParser
+GameEngine --> EventBus
+GameState *-- Player
+GameState *-- World
+GameState *-- QuestJournal
+GameState *-- AchievementTracker
+GameState *-- GameClock
+GameState *-- CommandHistory
+QuestJournal o-- "0..*" Quest
+Quest --> QuestStatus
+AchievementTracker o-- "0..*" Achievement
+GameClock --> WeatherPhase
+WorldMap ..> GameState : besuchte Räume
+DialogueService o-- "0..*" Character
+Character <|.. Mara
+Character <|.. MarketTrader
+Character <|.. StoneGuardian
+TalkCommand --> DialogueService
+GameState --> RoomId
+WorldFactory ..> World : erstellt
+World *-- "12" Room
+Room --> RoomId
+Room --> Direction
+Room o-- "0..*" Item
+Player *-- Inventory
+Inventory o-- "0..*" Item
+Item <|-- KeyItem
+Item <|-- LanternItem
+Item <|-- PrismItem
+Item <|-- HerbItem
+Command <|.. MoveCommand
+Command <|.. TakeCommand
+Command <|.. UseCommand
+Command <|.. TalkCommand
+Command <|.. LookCommand
+Command <|.. InspectCommand
+Command <|.. HelpCommand
+Command <|.. InventoryCommand
+Command <|.. MapCommand
+Command <|.. SaveCommand
+Command <|.. LoadCommand
+Command <|.. QuitCommand
+Command <|.. UnknownCommand
+Command <|.. JournalCommand
+Command <|.. AchievementsCommand
+Command <|.. TimeCommand
+Command <|.. HistoryCommand
+CommandParser ..> Command : erzeugt
+CommandParser --> InputValidator
+Command ..> GameState : verändert / liest
+SaveRepository <|.. PropertiesSaveRepository
+SaveCommand ..> SaveRepository
+LoadCommand ..> SaveRepository
+EventBus o-- "0..*" GameEventListener
+GameEventListener <|.. ConsoleNarrator
+EventBus ..> GameEvent
+@enduml
