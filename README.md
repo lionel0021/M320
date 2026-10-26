@@ -89,3 +89,4 @@
 - [Projektskizze / Dokumentation](src/KR/N4_nico/M4/README.md)
 - [UML-Klassendiagramm (PlantUML)](src/KR/N4_nico/M4/klassendiagramm.puml)
 - [UML-Sequenzdiagramm (PlantUML)](src/KR/N4_nico/M4/sequenzdiagramm.puml)
+- [Spielkarte / Raumplan (PlantUML)](src/KR/N4_nico/M4/karte.puml)

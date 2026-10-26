@@ -1,0 +1,22 @@
+@startuml
+title M4 - Geplante Spielkarte (Raumplan)
+left to right direction
+
+rectangle "Eingang\nStart, Gegenstand: lampe" as Eingang
+rectangle "Halle\nzentrale Kreuzung" as Halle
+rectangle "Verlies\nGegenstand: schluessel" as Verlies
+rectangle "Kristallhoehle" as Kristall
+rectangle "Unterirdischer See" as See
+rectangle "Schatzkammer\nZiel, Gegenstand: gold, verschlossen" as Schatz
+
+Eingang --> Halle : norden
+Halle --> Eingang : sueden
+Halle --> Verlies : westen
+Verlies --> Halle : osten
+Halle --> Kristall : norden
+Kristall --> Halle : sueden
+Kristall --> See : norden
+See --> Kristall : sueden
+Halle ..> Schatz : osten (braucht schluessel)
+Schatz --> Halle : westen
+@enduml

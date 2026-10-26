@@ -90,7 +90,41 @@ flowchart LR
 
 ---
 
-## 4. Architektur-Skizze (UML-Klassendiagramm)
+## 4. Spielkarte (geplanter Raumplan)
+
+So soll die Welt aufgebaut sein: sechs Räume, verbunden über Himmelsrichtungen.
+Die Höhle beginnt beim `Eingang` (dort liegt die `lampe`). Die `Halle` ist die
+zentrale Kreuzung. Im `Verlies` liegt der `schluessel`, der die verschlossene
+`Schatzkammer` öffnet – dort wartet das `gold` als Spielziel.
+
+```mermaid
+flowchart TB
+    Eingang["Eingang<br/>Start, Gegenstand: lampe"]
+    Halle["Halle<br/>zentrale Kreuzung"]
+    Verlies["Verlies<br/>Gegenstand: schluessel"]
+    Kristall["Kristallhoehle"]
+    See["Unterirdischer See"]
+    Schatz["Schatzkammer<br/>Ziel, Gegenstand: gold, verschlossen"]
+
+    Eingang -->|norden| Halle
+    Halle -->|sueden| Eingang
+    Halle -->|westen| Verlies
+    Verlies -->|osten| Halle
+    Halle -->|norden| Kristall
+    Kristall -->|sueden| Halle
+    Kristall -->|norden| See
+    See -->|sueden| Kristall
+    Halle -.->|osten / braucht schluessel| Schatz
+    Schatz -->|westen| Halle
+```
+
+> Gestrichelte Verbindung = verschlossene Tür (Nice-to-have: Rätsel mit Schlüssel).
+> Jeder Pfeil ist ein Ausgang in eine Himmelsrichtung; die Rückrichtung ist
+> jeweils eingezeichnet. Quelle als PlantUML: [`karte.puml`](karte.puml)
+
+---
+
+## 5. Architektur-Skizze (UML-Klassendiagramm)
 
 Die geplante Architektur nutzt eine **abstrakte Klasse** (`Spielobjekt`) und zwei
 **Interfaces** (`Befehl`, `Benutzbar`).
@@ -186,7 +220,7 @@ classDiagram
 
 ---
 
-## 5. Sequenzdiagramm – typischer Use Case (UC2 Bewegen)
+## 6. Sequenzdiagramm – typischer Use Case (UC2 Bewegen)
 
 Ablauf, wenn der Benutzer `gehe norden` eingibt:
 
@@ -213,7 +247,7 @@ sequenceDiagram
 
 ---
 
-## 6. Dokumentation der KI-Schritte (Prompts)
+## 7. Dokumentation der KI-Schritte (Prompts)
 
 Die Architektur und die Diagramme wurden mit Unterstützung einer KI (Claude)
 erstellt. Verwendete Prompts in der Reihenfolge:
@@ -236,7 +270,12 @@ erstellt. Verwendete Prompts in der Reihenfolge:
    > „Erstelle ein Sequenzdiagramm (Mermaid) für den Use Case ‚Spieler bewegt sich
    > in einen anderen Raum' beim Befehl `gehe norden`."
 
-5. **Prüfen / Anpassen**
+5. **Spielkarte / Raumplan generieren**
+   > „Zeichne die geplante Spielwelt als Raumplan: welche Räume gibt es und wie sind
+   > sie über Himmelsrichtungen verbunden? Markiere Startraum, Ziel und wo welche
+   > Gegenstände liegen. Verschlossene Türen gestrichelt."
+
+6. **Prüfen / Anpassen**
    > „Prüfe, ob Klassen- und Sequenzdiagramm zueinander passen, und korrigiere die
    > Methodennamen so, dass sie identisch sind."
 
@@ -247,11 +286,12 @@ Entscheidungen über Abstraktionen und Struktur stammen von mir.
 
 ---
 
-## 7. Dateien
+## 8. Dateien
 
 ```text
 N4_nico/M4/
 ├── README.md              (dieses Dokument)
 ├── klassendiagramm.puml   (UML-Klassendiagramm als PlantUML)
-└── sequenzdiagramm.puml   (UML-Sequenzdiagramm als PlantUML)
+├── sequenzdiagramm.puml   (UML-Sequenzdiagramm als PlantUML)
+└── karte.puml             (Spielkarte / Raumplan als PlantUML)
 ```
