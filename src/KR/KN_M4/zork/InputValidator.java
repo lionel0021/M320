@@ -7,10 +7,10 @@ public final class InputValidator {
     private static final int MAX_LENGTH = 160;
 
     public String normalize(String input) {
-        if (input == null) throw new IllegalArgumentException("Es wurde keine Eingabe übergeben.");
+        if (input == null) throw new UngueltigeEingabeException("Es wurde keine Eingabe übergeben.");
         String cleaned = input.strip().replaceAll("\\s+", " ");
-        if (cleaned.isEmpty()) throw new IllegalArgumentException("Bitte gib einen Befehl ein.");
-        if (cleaned.length() > MAX_LENGTH) throw new IllegalArgumentException("Der Befehl ist zu lang (maximal " + MAX_LENGTH + " Zeichen).");
+        if (cleaned.isEmpty()) throw new UngueltigeEingabeException("Bitte gib einen Befehl ein.");
+        if (cleaned.length() > MAX_LENGTH) throw new UngueltigeEingabeException("Der Befehl ist zu lang (maximal " + MAX_LENGTH + " Zeichen).");
         return cleaned.toLowerCase(Locale.ROOT);
     }
 }

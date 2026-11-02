@@ -23,7 +23,7 @@ public final class PropertiesSaveRepository implements SaveRepository {
         try (OutputStream out = Files.newOutputStream(path)) { p.store(out, "Arkenfall-Spielstand"); }
     }
     @Override public void load(GameState state) throws IOException {
-        if (!Files.exists(path)) throw new IOException("Noch kein Spielstand vorhanden.");
+        if (!Files.exists(path)) throw new SpielstandException("Noch kein Spielstand vorhanden.");
         Properties p = new Properties();
         try (InputStream in = Files.newInputStream(path)) { p.load(in); }
         try {
@@ -34,7 +34,7 @@ public final class PropertiesSaveRepository implements SaveRepository {
                     .map(RoomId::valueOf).collect(Collectors.toSet());
             state.restore(room, flags, items, visited);
             state.restoreTurn(Integer.parseInt(p.getProperty("turn", "0")));
-        } catch (IllegalArgumentException ex) { throw new IOException("Der Spielstand ist beschädigt.", ex); }
+        } catch (IllegalArgumentException ex) { throw new SpielstandException("Der Spielstand ist beschädigt.", ex); }
     }
     private Set<String> split(String text) {
         return Arrays.stream(text.split(",")).map(String::trim).filter(s -> !s.isEmpty()).collect(Collectors.toSet());

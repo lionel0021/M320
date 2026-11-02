@@ -10,7 +10,7 @@ public final class CommandParser {
     public Command parse(String input) {
         String line;
         try { line = validator.normalize(input); }
-        catch (IllegalArgumentException exception) { return new InvalidCommand(exception.getMessage()); }
+        catch (UngueltigeEingabeException exception) { return new InvalidCommand(exception.getMessage()); }
         String[] parts = line.split("\\s+", 2);
         String verb = parts[0]; String rest = parts.length > 1 ? parts[1] : "";
         return switch (verb) {
