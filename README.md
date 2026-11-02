@@ -17,6 +17,7 @@
 | KR.KN-M4 | Eigenes OO-Projekt – Nebel über Arkenfall (Zork-Textadventure) | [KR.KN-M4 öffnen](src/KR/KN_M4/README.md) |
 | KR.KN-D3 (Nico) | Delegation, Service-Interface, eigene Exception – Wetter-Abfrage | [KR.KN-D3 (Nico) öffnen](src/KR/KN_D3_nico/README.md) |
 | KR.KN-M4 (Nico) | Projektskizze Text-Adventure – Beschreibung, Anforderungen, Use Cases, UML-Klassen- und Sequenzdiagramm | [KR.KN-M4 (Nico) öffnen](src/KR/N4_nico/M4/README.md) |
+| KR.KN-D4 (Nico) | Delegation (UI/Logik), eigene Exceptions, Generics – Text-Adventure "Nebelhoehle" | [KR.KN-D4 (Nico) öffnen](src/KR/N4_nico/D4/README.md) |
 
 ## KR.KN-M1
 
@@ -90,3 +91,8 @@
 - [UML-Klassendiagramm (PlantUML)](src/KR/N4_nico/M4/klassendiagramm.puml)
 - [UML-Sequenzdiagramm (PlantUML)](src/KR/N4_nico/M4/sequenzdiagramm.puml)
 - [Spielkarte / Raumplan (PlantUML)](src/KR/N4_nico/M4/karte.puml)
+
+## KR.KN-D4 (Nico)
+
+- [Dokumentation](src/KR/N4_nico/D4/README.md)
+- [Programmcode](src/KR/N4_nico/D4/code/)
