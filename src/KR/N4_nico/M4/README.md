@@ -249,8 +249,8 @@ sequenceDiagram
 
 ## 7. Dokumentation der KI-Schritte (Prompts)
 
-Die Architektur und die Diagramme wurden mit Unterstützung einer KI (Claude)
-erstellt. Verwendete Prompts in der Reihenfolge:
+Die Architektur und die Diagramme wurden mit Unterstützung einer KI erstellt.
+Verwendete Prompts in der Reihenfolge:
 
 1. **Idee / Architektur**
    > „Ich möchte ein textbasiertes Adventure-Game wie Zork in Java bauen. Entwirf
