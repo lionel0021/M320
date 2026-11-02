@@ -19,6 +19,7 @@ public final class PropertiesSaveRepository implements SaveRepository {
         p.setProperty("turn", Integer.toString(state.clock().turns()));
         p.setProperty("flags", String.join(",", state.flags()));
         p.setProperty("items", state.player().inventory().items().stream().map(Item::id).collect(Collectors.joining(",")));
+        p.setProperty("visited", state.visitedRoomIds().stream().map(Enum::name).collect(Collectors.joining(",")));
         try (OutputStream out = Files.newOutputStream(path)) { p.store(out, "Arkenfall-Spielstand"); }
     }
     @Override public void load(GameState state) throws IOException {
@@ -29,7 +30,9 @@ public final class PropertiesSaveRepository implements SaveRepository {
             RoomId room = RoomId.valueOf(p.getProperty("room", "KAI"));
             Set<String> flags = split(p.getProperty("flags", ""));
             Set<String> items = split(p.getProperty("items", ""));
-            state.restore(room, flags, items);
+            Set<RoomId> visited = split(p.getProperty("visited", room.name())).stream()
+                    .map(RoomId::valueOf).collect(Collectors.toSet());
+            state.restore(room, flags, items, visited);
             state.restoreTurn(Integer.parseInt(p.getProperty("turn", "0")));
         } catch (IllegalArgumentException ex) { throw new IOException("Der Spielstand ist beschädigt.", ex); }
     }

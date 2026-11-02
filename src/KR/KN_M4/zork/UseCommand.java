@@ -9,7 +9,6 @@ public final class UseCommand implements Command {
         String itemName = parts[0]; String target = parts.length > 1 ? parts[1] : "";
         Item item = state.player().inventory().find(itemName).orElse(null);
         if (item == null) return "Diesen Gegenstand trägst du nicht.";
-        if (item instanceof PrismItem && state.player().location() == RoomId.OBSERVATORIUM && target.isBlank()) target = "globus";
         String result = item.use(state, target);
         events.publish("action", result);
         return "";

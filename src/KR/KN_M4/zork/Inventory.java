@@ -8,6 +8,7 @@ import java.util.Optional;
 public final class Inventory {
     private final Map<String, Item> items = new LinkedHashMap<>();
     public void add(Item item) { items.put(item.id(), item); }
+    public void clear() { items.clear(); }
     public Optional<Item> find(String query) {
         String q = query.toLowerCase();
         return items.values().stream().filter(i -> i.id().contains(q) || i.name().toLowerCase().contains(q)).findFirst();

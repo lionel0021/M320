@@ -28,8 +28,19 @@ public final class GameState {
     public boolean hasFlag(String flag) { return flags.contains(flag); }
     public void setFlag(String flag, boolean value) { if (value) flags.add(flag); else flags.remove(flag); }
     public Set<String> flags() { return Set.copyOf(flags); }
+    public Set<RoomId> visitedRoomIds() { return Set.copyOf(visitedRooms); }
     public void restore(RoomId room, Set<String> restoredFlags, Set<String> itemIds) {
-        player.moveTo(room); visitedRooms.add(room); flags.clear(); flags.addAll(restoredFlags);
+        restore(room, restoredFlags, itemIds, Set.of(room));
+    }
+    public void restore(RoomId room, Set<String> restoredFlags, Set<String> itemIds, Set<RoomId> restoredVisits) {
+        player.moveTo(room); visitedRooms.clear(); visitedRooms.addAll(restoredVisits); visitedRooms.add(room);
+        flags.clear(); flags.addAll(restoredFlags);
+        player.inventory().clear();
+        for (RoomId roomId : RoomId.values()) {
+            for (Item item : world.room(roomId).items().values().toArray(Item[]::new)) world.room(roomId).remove(item.id());
+        }
+        World initialWorld = WorldFactory.create();
+        for (RoomId roomId : RoomId.values()) for (Item item : initialWorld.room(roomId).items().values()) world.room(roomId).place(item);
         for (String id : itemIds) {
             Item item = itemById(id);
             if (item != null) { for (RoomId roomId : RoomId.values()) world.room(roomId).remove(id); player.inventory().add(item); }

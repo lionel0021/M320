@@ -8,7 +8,7 @@ public final class InspectCommand implements Command {
         if (target.contains("logbuch") && state.player().location() == RoomId.TURM_HALLE)
             return "Im Logbuch steht: ‚Drei Sterne weisen den Weg: Rabe, Walfisch, Krone.‘";
         if (target.contains("inschrift") && state.player().location() == RoomId.BIBLIOTHEK)
-            return "Die Inschrift zeigt Rabe, Walfisch und Krone. Ordne die Sternscheiben in dieser Reihenfolge.";
+            return "Die Inschrift zeigt Rabe, Walfisch und Krone. Im Observatorium: benutze Mondprisma an Rabe Walfisch Krone.";
         if (target.contains("sockel") && state.player().location() == RoomId.STEINKREIS)
             return "Der Sockel ist leer. Hier sollte etwas eingesetzt werden.";
         Room room = state.world().room(state.player().location());
